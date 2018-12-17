@@ -103,10 +103,10 @@ export const constantRouterMap = [
         meta: { title: '林技问答列表', icon: 'table' }
       },
       {
-        path: 'tree',
-        name: 'Tree',
-        component: () => import('@/views/tree/index'),
-        meta: { title: 'Tree', icon: 'tree' }
+        path: 'app',
+        name: 'app',
+        component: () => import('@/views/app'),
+        meta: { title: '微信公众号', icon: 'tree' }
       }
     ]
   },
