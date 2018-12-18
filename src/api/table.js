@@ -8,6 +8,7 @@ export function getList(params) {
   })
 }
 
+// 获取消息列表
 export function getMessageList(params) {
   return request({
     url: '/messagelist',

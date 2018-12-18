@@ -5,18 +5,17 @@
       <el-button v-waves class="filter-item" type="primary" icon="el-icon-search" size="mini" @click="handleFilter">{{ "搜索" }}</el-button>
     </div>
 
-    <el-table :data="tableData" style="width: 100%">
-      <el-table-column label="序号" type="index" width="80"/>
-      <el-table-column label="标题" prop="title"/>
-      <el-table-column label="简介" prop="intro"/>
+    <el-table :data="tableData" style="width: 100%;">
+      <el-table-column label="序号" type="index" width="60"/>
+      <el-table-column label="标题" prop="title" show-overflow-tooltip min-width="200"/>
+      <el-table-column label="简介" prop="intro" show-overflow-tooltip min-width="150"/>
       <el-table-column label="编辑" prop="editor" width="100"/>
-      <el-table-column label="发布时间" width="180">
+      <el-table-column label="发布时间" width="120">
         <template slot-scope="scope">
-          <i class="el-icon-time"/>
-          <span style="margin-left: 10px">{{ scope.row.pubdate }}</span>
+          <span>{{ scope.row.pubdate }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="操作" width="180">
+      <el-table-column label="操作" width="150">
         <template slot-scope="scope">
           <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">详情</el-button>
           <el-button size="mini" type="danger" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
@@ -36,77 +35,85 @@ import { getMessageList, delMessageList } from '@/api/table'
 export default {
   data() {
     return {
+      nowrap: {
+        whitespace: 'nowrap',
+        textOverflow: 'ellipsis'
+      },
       total: 12,
       listQuery: {
         page: 1,
         limit: 10,
         title: undefined
       },
-      tableData: [{
-        id: 1,
-        title: '定义当前场景的画布元素的事件处理1',
-        intro: '定义当前场景的画布元素的事件处理1',
-        editor: '王小虎',
-        pubdate: '2016-05-02'
-      }, {
-        id: 2,
-        title: '定义当前场景的画布元素的事件处理2',
-        intro: '定义当前场景的画布元素的事件处理2',
-        editor: '王小虎',
-        pubdate: '2016-05-02'
-      }, {
-        id: 3,
-        title: '定义当前场景的画布元素的事件处理3',
-        intro: '定义当前场景的画布元素的事件处理3',
-        editor: '王小虎',
-        pubdate: '2016-05-02'
-      }, {
-        id: 4,
-        title: '定义当前场景的画布元素的事件处理4',
-        intro: '定义当前场景的画布元素的事件处理4',
-        editor: '王小虎',
-        pubdate: '2016-05-02'
-      }, {
-        id: 5,
-        title: '定义当前场景的画布元素的事件处理5',
-        intro: '定义当前场景的画布元素的事件处理5',
-        editor: '王小虎',
-        pubdate: '2016-05-02'
-      }, {
-        id: 6,
-        title: '定义当前场景的画布元素的事件处理6',
-        intro: '定义当前场景的画布元素的事件处理6',
-        editor: '王小虎',
-        pubdate: '2016-05-02'
-      }, {
-        id: 7,
-        title: '定义当前场景的画布元素的事件处理7',
-        intro: '定义当前场景的画布元素的事件处理7',
-        editor: '王小虎',
-        pubdate: '2016-05-02'
-      }, {
-        id: 8,
-        title: '定义当前场景的画布元素的事件处理8',
-        intro: '定义当前场景的画布元素的事件处理8',
-        editor: '王小虎',
-        pubdate: '2016-05-02'
-      }, {
-        id: 9,
-        title: '定义当前场景的画布元素的事件处理9',
-        intro: '定义当前场景的画布元素的事件处理9',
-        editor: '王小虎',
-        pubdate: '2016-05-02'
-      }, {
-        id: 10,
-        title: '定义当前场景的画布元素的事件处理10',
-        intro: '定义当前场景的画布元素的事件处理10',
-        editor: '王小虎',
-        pubdate: '2016-05-02'
-      }]
+      tableData: []
+    //   tableData: [{
+    //     id: 1,
+    //     title: "省乡土专家首次获得省林业专业高级工程师职称",
+    //     intro: "省乡土专家首次获得省林业专业高级工程师职称",
+    //     editor: "浙江张骏",
+    //     pubdate: '2016-05-02'
+    //   }, {
+    //     id: 2,
+    //     title: "应对低温雨雪灾害，林技通来帮忙",
+    //     intro: "应对低温雨雪灾害，林技通来帮忙",
+    //     editor: "浙江张骏",
+    //     pubdate: '2016-05-02'
+    //   }, {
+    //     id: 3,
+    //     title: "浙江省林业局关于开展寻找 “最美林技推广员”活动的通知",
+    //     intro: "浙江省林业局关于开展寻找 “最美林技推广员”活动的通知",
+    //     editor: "浙江张骏",
+    //     pubdate: '2016-05-02'
+    //   }, {
+    //     id: 4,
+    //     title: "省林业局加强“一亩山万元钱”科技富民模式及食用林产品质量安全",
+    //     intro: "省林业局加强“一亩山万元钱”科技富民模式及食用林产品质量安全",
+    //     editor: "浙江张骏",
+    //     pubdate: '2016-05-02'
+    //   }, {
+    //     id: 5,
+    //     title: "科普活动“‘一亩山万元钱’科技富民模式普及与推广”喜获梁希科",
+    //     intro: "科普活动“‘一亩山万元钱’科技富民模式普及与推广”喜获梁希科",
+    //     editor: "浙江张骏",
+    //     pubdate: '2016-05-02'
+    //   }, {
+    //     id: 6,
+    //     title: "浙江省第十五届林业科技周活动在余姚启动",
+    //     intro: "浙江省第十五届林业科技周活动在余姚启动",
+    //     editor: "浙江张骏",
+    //     pubdate: '2016-05-02'
+    //   }, {
+    //     id: 7,
+    //     title: "仙居上张：香榧硕果吹响增收号角",
+    //     intro: "仙居上张：香榧硕果吹响增收号角",
+    //     editor: "浙江张骏",
+    //     pubdate: '2016-05-02'
+    //   }, {
+    //     id: 8,
+    //     title: "浙江省林业厅关于举办浙江省第十五届 林业科技周活动的通知",
+    //     intro: "浙江省林业厅关于举办浙江省第十五届 林业科技周活动的通知",
+    //     editor: "浙江张骏",
+    //     pubdate: '2016-05-02'
+    //   }, {
+    //     id: 9,
+    //     title: "浙江省“一亩山万元钱”科技支撑团赴贵州黔东南州开展技术扶贫",
+    //     intro: "浙江省“一亩山万元钱”科技支撑团赴贵州黔东南州开展技术扶贫",
+    //     editor: "浙江张骏",
+    //     pubdate: '2016-05-02'
+    //   }, {
+    //     id: 10,
+    //     title: "省政协调研组到富阳开展“健全科技下乡长效机制”调研工作",
+    //     intro: "省政协调研组到富阳开展“健全科技下乡长效机制”调研工作",
+    //     editor: "浙江张骏",
+    //     pubdate: '2016-05-02'
+    //   }]
     }
   },
+  mounted() {
+    this.getlist() // 获取消息列表
+  },
   methods: {
-    getlist() { // 获取列表
+    getlist() { // 获取消息列表
       getMessageList(this.listQuery).then(response => {
         this.tableData = response.data.list
         this.total = response.data.total
@@ -133,4 +140,3 @@ export default {
   }
 }
 </script>
-
