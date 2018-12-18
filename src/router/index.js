@@ -48,20 +48,20 @@ export const constantRouterMap = [
       {
         path: 'messageList',
         name: 'messageList',
-        component: () => import('@/views/notice/messageList'),
+        component: () => import('@/views/message/messageList'),
         meta: { title: '消息列表', icon: 'table' }
       },
       {
         path: 'publishMessage',
         name: 'publishMessage',
-        component: () => import('@/views/notice/publishMessage'),
+        component: () => import('@/views/message/publishMessage'),
         meta: { title: '发布信息', icon: 'tree' }
       },
       {
         path: 'messageDetail',
         name: 'messageDetail',
         hidden: true,
-        component: () => import('@/views/notice/messageDetail'),
+        component: () => import('@/views/message/messageDetail'),
         meta: { title: '详情' }
       }
     ]
@@ -103,10 +103,32 @@ export const constantRouterMap = [
         meta: { title: '林技问答列表', icon: 'table' }
       },
       {
-        path: 'app',
-        name: 'app',
-        component: () => import('@/views/app'),
+        path: 'tree',
+        redirect: '/app',
+        name: 'tree',
+        component: () => import('@/views/tree/index'),
         meta: { title: '微信公众号', icon: 'tree' }
+      }
+    ]
+  },
+
+  {
+    path: '/app',
+    name: 'app',
+    component: () => import('@/views/app'),
+    children: [
+      {
+        path: 'messageList',
+        name: 'messageList',
+        component: () => import('@/views/message/messageList'),
+        meta: { title: '消息列表', icon: 'table' }
+      },
+      {
+        path: 'messageDetail',
+        name: 'messageDetail',
+        hidden: true,
+        component: () => import('@/views/message/messageDetail'),
+        meta: { title: '详情' }
       }
     ]
   },

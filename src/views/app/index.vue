@@ -1,15 +1,15 @@
 <template>
   <div class="app-container">
-    <el-carousel height="150px">
+    <el-carousel height="200px">
       <el-carousel-item v-for="item in items" :key="item">
-        <img :src="item" alt="" style="width: 100%; height: 150px;">
+        <img :src="item" alt="" style="width: 100%; height: 200px;">
       </el-carousel-item>
     </el-carousel>
     <el-row :gutter="10" style="margin-top: 10px;">
       <el-col :span="8">
-        <div class="card-panel">
+        <div class="card-panel" @click="handleMessage">
           <div class="card-panel-icon-wrapper icon-people">
-            <svg-icon icon-class="peoples" class-name="card-panel-icon" />
+            <svg-icon icon-class="people" class-name="card-panel-icon" />
           </div>
           <div class="card-panel-description">
             <div class="card-panel-text">通知公告</div>
@@ -18,87 +18,23 @@
       </el-col>
       <el-col :span="8">
         <div class="card-panel">
-          <div class="card-panel-icon-wrapper icon-people">
-            <svg-icon icon-class="peoples" class-name="card-panel-icon" />
+          <div class="card-panel-icon-wrapper icon-message">
+            <svg-icon icon-class="message" class-name="card-panel-icon" />
           </div>
           <div class="card-panel-description">
-            <div class="card-panel-text">通知公告</div>
-          </div>
-        </div>    
-      </el-col>
-      <el-col :span="8">
-        <div class="card-panel">
-          <div class="card-panel-icon-wrapper icon-people">
-            <svg-icon icon-class="peoples" class-name="card-panel-icon" />
-          </div>
-          <div class="card-panel-description">
-            <div class="card-panel-text">通知公告</div>
-          </div>
-        </div>    
-      </el-col>
-    </el-row>
-        <el-row :gutter="10">
-      <el-col :span="8">
-        <div class="card-panel">
-          <div class="card-panel-icon-wrapper icon-people">
-            <svg-icon icon-class="peoples" class-name="card-panel-icon" />
-          </div>
-          <div class="card-panel-description">
-            <div class="card-panel-text">通知公告</div>
+            <div class="card-panel-text">林技问答</div>
           </div>
         </div>
       </el-col>
       <el-col :span="8">
         <div class="card-panel">
-          <div class="card-panel-icon-wrapper icon-people">
-            <svg-icon icon-class="peoples" class-name="card-panel-icon" />
+          <div class="card-panel-icon-wrapper icon-money">
+            <svg-icon icon-class="money" class-name="card-panel-icon" />
           </div>
           <div class="card-panel-description">
-            <div class="card-panel-text">通知公告</div>
-          </div>
-        </div>    
-      </el-col>
-      <el-col :span="8">
-        <div class="card-panel">
-          <div class="card-panel-icon-wrapper icon-people">
-            <svg-icon icon-class="peoples" class-name="card-panel-icon" />
-          </div>
-          <div class="card-panel-description">
-            <div class="card-panel-text">通知公告</div>
-          </div>
-        </div>    
-      </el-col>
-    </el-row>
-    <el-row :gutter="10">
-      <el-col :span="8">
-        <div class="card-panel">
-          <div class="card-panel-icon-wrapper icon-people">
-            <svg-icon icon-class="peoples" class-name="card-panel-icon" />
-          </div>
-          <div class="card-panel-description">
-            <div class="card-panel-text">通知公告</div>
+            <div class="card-panel-text">空中课堂</div>
           </div>
         </div>
-      </el-col>
-      <el-col :span="8">
-        <div class="card-panel">
-          <div class="card-panel-icon-wrapper icon-people">
-            <svg-icon icon-class="peoples" class-name="card-panel-icon" />
-          </div>
-          <div class="card-panel-description">
-            <div class="card-panel-text">通知公告</div>
-          </div>
-        </div>    
-      </el-col>
-      <el-col :span="8">
-        <div class="card-panel">
-          <div class="card-panel-icon-wrapper icon-people">
-            <svg-icon icon-class="peoples" class-name="card-panel-icon" />
-          </div>
-          <div class="card-panel-description">
-            <div class="card-panel-text">通知公告</div>
-          </div>
-        </div>    
       </el-col>
     </el-row>
   </div>
@@ -110,7 +46,13 @@ export default {
     return {
       items: ['/static/1.jpg', '/static/2.jpg']
     }
+  },
+  methods: {
+    handleMessage() {
+      this.$router.push({ path: '/app/messageList' })
+    }
   }
+
 }
 </script>
 
