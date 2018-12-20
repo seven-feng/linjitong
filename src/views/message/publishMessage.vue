@@ -2,14 +2,14 @@
   <div class="app-container">
     <el-form ref="form" :model="form" :rules="rules" label-position="right" label-width="60px">
       <el-form-item label="标题" prop="title">
-        <el-input v-model="form.title" style="width: 50%"/>
+        <el-input v-model="form.title" style="min-width: 275px; max-width: 500px;"/>
       </el-form-item>
       <el-form-item label="区域" prop="areaName">
-        <el-input v-model="form.areaName" style="width: 50%" @focus="handleAreaDialog"/>
+        <el-input v-model="form.areaName" style="min-width: 275px; max-width: 500px;" @focus="handleAreaDialog"/>
         <el-input v-model="form.areaId" style="display: none;"/>
       </el-form-item>
       <el-form-item label="简介" prop="intro">
-        <el-input v-model="form.intro" :rows="4" type="textarea" style="width: 50%;"/>
+        <el-input v-model="form.intro" :rows="6" type="textarea" style="min-width: 275px; max-width: 500px;"/>
       </el-form-item>
       <el-form-item label="图片">
         <el-upload
@@ -41,7 +41,7 @@
           :on-remove="filesRemove"
           action=""
           multiple
-          style="width: 30%;">
+          style="min-width: 275px; max-width: 500px;">
           <el-button size="small" type="primary">点击上传</el-button>
           <div slot="tip" class="el-upload__tip">如需更改，请重新上传所有文件</div>
         </el-upload>

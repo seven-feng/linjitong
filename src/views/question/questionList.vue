@@ -10,22 +10,22 @@
       </el-select>
       <el-date-picker v-model="listQuery.sdate" type="date" placeholder="开始日期" size="mini" style="width: 130px; vertical-align: middle; margin-bottom: 10px;"/>
       <el-date-picker v-model="listQuery.edate" type="date" placeholder="结束日期" size="mini" style="width: 130px; vertical-align: middle; margin-bottom: 10px;"/>
-      <el-button v-waves class="filter-item" type="primary" icon="el-icon-search" size="mini" @click="handleFilter">{{ "搜索" }}</el-button>
+      <el-button class="filter-item" type="primary" icon="el-icon-search" size="mini" @click="handleFilter">{{ "搜索" }}</el-button>
     </div>
 
     <el-table :data="tableData" style="width: 100%">
       <el-table-column label="序号" type="index" width="80"/>
-      <el-table-column label="标题" prop="title"/>
-      <el-table-column label="产业类型" prop="type" width="120"/>
+      <el-table-column label="标题" prop="title" show-overflow-tooltip min-width="200"/>
+      <el-table-column label="产业类型" prop="subType" width="120"/>
       <el-table-column label="状态" prop="state" width="80"/>
       <el-table-column label="评分" prop="grade" width="100"/>
-      <el-table-column label="提问时间  " width="180">
+      <el-table-column label="提问时间" width="180">
         <template slot-scope="scope">
           <i class="el-icon-time"/>
           <span style="margin-left: 10px">{{ scope.row.pubdate }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="操作" width="180">
+      <el-table-column label="操作" width="150">
         <template slot-scope="scope">
           <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">详情</el-button>
           <el-button size="mini" type="danger" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
@@ -51,73 +51,16 @@ export default {
       listQuery: {
         page: 1,
         limit: 10,
-        title: undefined,
+        title: '',
         subType: '',
         sdate: '',
         edate: ''
       },
-      tableData: [{
-        id: 1,
-        title: '定义当前场景的画布元素的事件处理1',
-        intro: '定义当前场景的画布元素的事件处理1',
-        editor: '王小虎',
-        pubdate: '2016-05-02 10:00:00'
-      }, {
-        id: 2,
-        title: '定义当前场景的画布元素的事件处理2',
-        intro: '定义当前场景的画布元素的事件处理2',
-        editor: '王小虎',
-        pubdate: '2016-05-02 10:00:00'
-      }, {
-        id: 3,
-        title: '定义当前场景的画布元素的事件处理3',
-        intro: '定义当前场景的画布元素的事件处理3',
-        editor: '王小虎',
-        pubdate: '2016-05-02 10:00:00'
-      }, {
-        id: 4,
-        title: '定义当前场景的画布元素的事件处理4',
-        intro: '定义当前场景的画布元素的事件处理4',
-        editor: '王小虎',
-        pubdate: '2016-05-02 10:00:00'
-      }, {
-        id: 5,
-        title: '定义当前场景的画布元素的事件处理5',
-        intro: '定义当前场景的画布元素的事件处理5',
-        editor: '王小虎',
-        pubdate: '2016-05-02 10:00:00'
-      }, {
-        id: 6,
-        title: '定义当前场景的画布元素的事件处理6',
-        intro: '定义当前场景的画布元素的事件处理6',
-        editor: '王小虎',
-        pubdate: '2016-05-02 10:00:00'
-      }, {
-        id: 7,
-        title: '定义当前场景的画布元素的事件处理7',
-        intro: '定义当前场景的画布元素的事件处理7',
-        editor: '王小虎',
-        pubdate: '2016-05-02 10:00:00'
-      }, {
-        id: 8,
-        title: '定义当前场景的画布元素的事件处理8',
-        intro: '定义当前场景的画布元素的事件处理8',
-        editor: '王小虎',
-        pubdate: '2016-05-02 10:00:00'
-      }, {
-        id: 9,
-        title: '定义当前场景的画布元素的事件处理9',
-        intro: '定义当前场景的画布元素的事件处理9',
-        editor: '王小虎',
-        pubdate: '2016-05-02 10:00:00'
-      }, {
-        id: 10,
-        title: '定义当前场景的画布元素的事件处理10',
-        intro: '定义当前场景的画布元素的事件处理10',
-        editor: '王小虎',
-        pubdate: '2016-05-02 10:00:00'
-      }]
+      tableData: []
     }
+  },
+  mounted() {
+    this.getlist()
   },
   methods: {
     getlist() { // 获取列表

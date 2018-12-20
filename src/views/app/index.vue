@@ -17,22 +17,22 @@
         </div>
       </el-col>
       <el-col :span="8">
+        <div class="card-panel" @click="handleKnowledge">
+          <div class="card-panel-icon-wrapper icon-money">
+            <svg-icon icon-class="money" class-name="card-panel-icon" />
+          </div>
+          <div class="card-panel-description">
+            <div class="card-panel-text">空中课堂</div>
+          </div>
+        </div>
+      </el-col>
+      <el-col :span="8">
         <div class="card-panel">
           <div class="card-panel-icon-wrapper icon-message">
             <svg-icon icon-class="message" class-name="card-panel-icon" />
           </div>
           <div class="card-panel-description">
             <div class="card-panel-text">林技问答</div>
-          </div>
-        </div>
-      </el-col>
-      <el-col :span="8">
-        <div class="card-panel">
-          <div class="card-panel-icon-wrapper icon-money">
-            <svg-icon icon-class="money" class-name="card-panel-icon" />
-          </div>
-          <div class="card-panel-description">
-            <div class="card-panel-text">空中课堂</div>
           </div>
         </div>
       </el-col>
@@ -49,7 +49,10 @@ export default {
   },
   methods: {
     handleMessage() {
-      this.$router.push({ path: '/app/messageList' })
+      this.$router.push({ name: 'appMessageList' })
+    },
+    handleKnowledge() {
+      this.$router.push({ name: 'appKnowledgeList' })
     }
   }
 

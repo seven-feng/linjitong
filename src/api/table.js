@@ -35,6 +35,7 @@ export function postMessage(params) {
   })
 }
 
+// 获取知识列表
 export function getKnowledgeList(params) {
   return request({
     url: '/knowledgelist',
@@ -53,6 +54,7 @@ export function delKnowledgeList(id) {
   })
 }
 
+// 获取问答列表
 export function getQuestionList(params) {
   return request({
     url: '/questionlist',

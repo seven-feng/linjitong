@@ -2,29 +2,21 @@
   <div class="app-container">
     <el-form ref="form" :model="form" :rules="rules" label-position="right" label-width="60px">
       <el-form-item label="标题" prop="title">
-        <el-input v-model="form.title" style="width: 50%"/>
+        <el-input v-model="form.title" placeholder="请输入标题" style="min-width: 275px; max-width: 500px;"/>
       </el-form-item>
-      <el-row>
-        <el-col :span="6">
-          <el-form-item label="大类" prop="type">
-            <el-select v-model="form.type" placeholder="大类" clearable class="filter-item" style="width: 100%">
-              <el-option v-for="(item, index) in types" :key="index" :label="item" :value="item"/>
-            </el-select>
-          </el-form-item>
-        </el-col>
-        <el-col :span="6">
-          <el-form-item label="子类" prop="subType">
-            <el-select v-model="form.subType" placeholder="子类" clearable class="filter-item" style="width: 100%">
-              <el-option v-for="(item, index) in subTypes" :key="index" :label="item" :value="item"/>
-            </el-select>
-          </el-form-item>
-        </el-col>
-      </el-row>
-
+      <el-form-item label="大类" prop="type">
+        <el-select v-model="form.type" placeholder="请选择大类" clearable class="filter-item" style="min-width: 275px;">
+          <el-option v-for="(item, index) in types" :key="index" :label="item" :value="item"/>
+        </el-select>
+      </el-form-item>
+      <el-form-item label="子类" prop="subType">
+        <el-select v-model="form.subType" placeholder="请选择子类" clearable class="filter-item" style="min-width: 275px;">
+          <el-option v-for="(item, index) in subTypes" :key="index" :label="item" :value="item"/>
+        </el-select>
+      </el-form-item>
       <el-form-item label="简介" prop="intro">
-        <el-input v-model="form.intro" :rows="4" type="textarea" placeholder="输入内容不要超过255个字" style="width: 50%;"/>
+        <el-input v-model="form.intro" :rows="6" type="textarea" placeholder="输入内容不要超过255个字" style="min-width: 275px; max-width: 500px;"/>
       </el-form-item>
-
       <el-form-item label="附件" prop="files">
         <el-upload
           ref="reportUpload"
@@ -35,7 +27,7 @@
           :on-remove="filesRemove"
           action=""
           multiple
-          style="width: 30%;">
+          style="min-width: 275px; max-width: 500px;">
           <el-button size="small" type="primary">点击上传</el-button>
           <div slot="tip" class="el-upload__tip">如需更改，请重新上传所有文件</div>
         </el-upload>
@@ -67,7 +59,7 @@ export default {
           { required: true, message: '请选择大类', trigger: 'change' }
         ],
         subType: [
-          { required: true, message: '请选择小类', trigger: 'change' }
+          { required: true, message: '请选择子类', trigger: 'change' }
         ],
         files: [
           { required: true, message: '请上传文件', trigger: 'change' }

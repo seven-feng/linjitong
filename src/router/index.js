@@ -29,7 +29,7 @@ export const constantRouterMap = [
     path: '/',
     component: Layout,
     // redirect: '/dashboard',
-    redirect: '/notice',
+    redirect: '/message',
     name: 'Dashboard',
     hidden: true,
     children: [{
@@ -39,10 +39,10 @@ export const constantRouterMap = [
   },
 
   {
-    path: '/notice',
+    path: '/message',
     component: Layout,
-    redirect: '/notice/messageList',
-    name: 'notice',
+    redirect: '/message/messageList',
+    name: 'message',
     meta: { title: '通知公告', icon: 'example' },
     children: [
       {
@@ -85,6 +85,13 @@ export const constantRouterMap = [
         name: 'publishKnowledge',
         component: () => import('@/views/knowledge/publishKnowledge'),
         meta: { title: '知识库发布', icon: 'tree' }
+      },
+      {
+        path: 'knowledgeDetail',
+        name: 'knowledgeDetail',
+        hidden: true,
+        component: () => import('@/views/knowledge/knowledgeDetail'),
+        meta: { title: '详情' }
       }
     ]
   },
@@ -115,22 +122,32 @@ export const constantRouterMap = [
   {
     path: '/app',
     name: 'app',
-    component: () => import('@/views/app'),
-    children: [
-      {
-        path: 'messageList',
-        name: 'messageList',
-        component: () => import('@/views/message/messageList'),
-        meta: { title: '消息列表', icon: 'table' }
-      },
-      {
-        path: 'messageDetail',
-        name: 'messageDetail',
-        hidden: true,
-        component: () => import('@/views/message/messageDetail'),
-        meta: { title: '详情' }
-      }
-    ]
+    component: () => import('@/views/app')
+  },
+  {
+    path: '/app/messageList',
+    name: 'appMessageList',
+    component: () => import('@/views/message/messageList'),
+    hidden: true
+  },
+  {
+    path: '/app/messageDetail',
+    name: 'appMessageDetail',
+    component: () => import('@/views/message/messageDetail'),
+    hidden: true
+  },
+  {
+    path: '/app/knowledgeList',
+    name: 'appKnowledgeList',
+    component: () => import('@/views/knowledge/knowledgeList'),
+    hidden: true
+  },
+  {
+    path: '/app/knowledgeDetail',
+    name: 'appKnowledgeDetail',
+    hidden: true,
+    component: () => import('@/views/knowledge/knowledgeDetail'),
+    hidden: true
   },
 
   // {

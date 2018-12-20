@@ -8,22 +8,21 @@
       <el-select v-model="listQuery.subType" placeholder="子类" clearable class="filter-item" size="mini" style="width: 130px">
         <el-option v-for="(item, index) in subTypes" :key="index" :label="item" :value="item"/>
       </el-select>
-      <el-button v-waves class="filter-item" type="primary" icon="el-icon-search" size="mini" @click="handleFilter">{{ "搜索" }}</el-button>
+      <el-button class="filter-item" type="primary" icon="el-icon-search" size="mini" @click="handleFilter">{{ "搜索" }}</el-button>
     </div>
 
     <el-table :data="tableData" style="width: 100%">
       <el-table-column label="序号" type="index" width="80"/>
-      <el-table-column label="标题" prop="title"/>
+      <el-table-column label="标题" prop="title" show-overflow-tooltip min-width="200"/>
       <el-table-column label="类别" prop="subType" width="120"/>
       <el-table-column label="文档类型" prop="docType" width="80"/>
       <el-table-column label="大小" prop="size" width="100"/>
-      <el-table-column label="发布时间" width="180">
+      <el-table-column label="发布时间" width="120">
         <template slot-scope="scope">
-          <i class="el-icon-time"/>
-          <span style="margin-left: 10px">{{ scope.row.pubdate }}</span>
+          <span>{{ scope.row.pubdate }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="操作" width="180">
+      <el-table-column label="操作" width="150">
         <template slot-scope="scope">
           <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">详情</el-button>
           <el-button size="mini" type="danger" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
@@ -49,75 +48,18 @@ export default {
       listQuery: {
         page: 1,
         limit: 10,
-        title: undefined,
+        title: '',
         type: '',
         subType: ''
       },
-      tableData: [{
-        id: 1,
-        title: '定义当前场景的画布元素的事件处理1',
-        intro: '定义当前场景的画布元素的事件处理1',
-        editor: '王小虎',
-        pubdate: '2016-05-02'
-      }, {
-        id: 2,
-        title: '定义当前场景的画布元素的事件处理2',
-        intro: '定义当前场景的画布元素的事件处理2',
-        editor: '王小虎',
-        pubdate: '2016-05-02'
-      }, {
-        id: 3,
-        title: '定义当前场景的画布元素的事件处理3',
-        intro: '定义当前场景的画布元素的事件处理3',
-        editor: '王小虎',
-        pubdate: '2016-05-02'
-      }, {
-        id: 4,
-        title: '定义当前场景的画布元素的事件处理4',
-        intro: '定义当前场景的画布元素的事件处理4',
-        editor: '王小虎',
-        pubdate: '2016-05-02'
-      }, {
-        id: 5,
-        title: '定义当前场景的画布元素的事件处理5',
-        intro: '定义当前场景的画布元素的事件处理5',
-        editor: '王小虎',
-        pubdate: '2016-05-02'
-      }, {
-        id: 6,
-        title: '定义当前场景的画布元素的事件处理6',
-        intro: '定义当前场景的画布元素的事件处理6',
-        editor: '王小虎',
-        pubdate: '2016-05-02'
-      }, {
-        id: 7,
-        title: '定义当前场景的画布元素的事件处理7',
-        intro: '定义当前场景的画布元素的事件处理7',
-        editor: '王小虎',
-        pubdate: '2016-05-02'
-      }, {
-        id: 8,
-        title: '定义当前场景的画布元素的事件处理8',
-        intro: '定义当前场景的画布元素的事件处理8',
-        editor: '王小虎',
-        pubdate: '2016-05-02'
-      }, {
-        id: 9,
-        title: '定义当前场景的画布元素的事件处理9',
-        intro: '定义当前场景的画布元素的事件处理9',
-        editor: '王小虎',
-        pubdate: '2016-05-02'
-      }, {
-        id: 10,
-        title: '定义当前场景的画布元素的事件处理10',
-        intro: '定义当前场景的画布元素的事件处理10',
-        editor: '王小虎',
-        pubdate: '2016-05-02'
-      }]
+      tableData: []
     }
   },
+  mounted() {
+    this.getlist() // 获取知识列表
+  },
   methods: {
-    getlist() { // 获取列表
+    getlist() { // 获取知识列表
       getKnowledgeList(this.listQuery).then(response => {
         this.tableData = response.data.list
         this.total = response.data.total
@@ -132,7 +74,11 @@ export default {
       this.getlist()
     },
     handleEdit(index, row) { // 编辑按钮
-      this.$router.push({ name: 'messageDetail', params: { id: row.id }}) // 跳转消息详情页
+      if(this.$route.name === 'knowledgeList') {
+        this.$router.push({ name: 'knowledgeDetail', params: { id: row.id }}) // 跳转消息详情页
+      } else {
+        this.$router.push({ name: 'appKnowledgeDetail', params: { id: row.id }}) // 跳转app消息详情页
+      }
       console.log(index, row)
     },
     handleDelete(index, row) { // 删除按钮
