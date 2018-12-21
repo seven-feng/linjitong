@@ -27,11 +27,14 @@ export function delMessageList(id) {
   })
 }
 
-export function postMessage(params) {
+export function postMessage(formData) {
+  debugger
   return request({
     url: '/message',
     method: 'post',
-    params
+    params: {
+      ...formData
+    }
   })
 }
 
@@ -69,6 +72,16 @@ export function delQuestionList(id) {
     method: 'delete',
     params: {
       id
+    }
+  })
+}
+
+export function saveAnswer(form) {
+  return request({
+    url: '/question',
+    method: 'post',
+    params: {
+      form
     }
   })
 }

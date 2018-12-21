@@ -34,8 +34,8 @@
       </el-form-item>
 
       <el-form-item>
-        <el-button type="primary" @click="handleSubmit('form')">发布</el-button>
-        <el-button @click="resetForm('form')">重置</el-button>
+        <el-button type="primary" size="small" @click="handleSubmit('form')">发布</el-button>
+        <el-button size="small" @click="resetForm('form')">重置</el-button>
       </el-form-item>
     </el-form>
   </div>
@@ -60,10 +60,10 @@ export default {
         ],
         subType: [
           { required: true, message: '请选择子类', trigger: 'change' }
-        ],
-        files: [
-          { required: true, message: '请上传文件', trigger: 'change' }
         ]
+        // files: [
+        //   { required: true, message: '请上传文件', trigger: 'change' }
+        // ]
       },
       types: ['林技产业'],
       subTypes: ['竹笋', '山核桃', '香榧', '油茶', '花卉苗木', '其他木本粮油', '林下经济'],
@@ -96,9 +96,15 @@ export default {
     handleSubmit(formName) { // 提交表单
       this.$refs[formName].validate(valid => {
         if (valid) {
-          // const formData = new FormData()
-          debugger
-          postMessage(this.form)
+          var formData = new FormData()
+          this.files.map(item => {
+            formData.append('files', item)
+          })
+          formData.append('title', this.form.title)
+          formData.append('type', this.form.type)
+          formData.append('subType', this.form.subType)
+          formData.append('intro', this.form.intro)
+          postMessage(formData)
             .then(() => {
               this.$message({ message: '提交成功！', type: 'success', center: true })
               this.$router.go(-1)

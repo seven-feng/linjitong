@@ -27,7 +27,7 @@
         </div>
       </el-col>
       <el-col :span="8">
-        <div class="card-panel">
+        <div class="card-panel" @click="handleQuestion">
           <div class="card-panel-icon-wrapper icon-message">
             <svg-icon icon-class="message" class-name="card-panel-icon" />
           </div>
@@ -53,6 +53,9 @@ export default {
     },
     handleKnowledge() {
       this.$router.push({ name: 'appKnowledgeList' })
+    },
+    handleQuestion() {
+      this.$router.push({ name: 'appQuestionList' })
     }
   }
 

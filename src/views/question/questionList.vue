@@ -18,11 +18,10 @@
       <el-table-column label="标题" prop="title" show-overflow-tooltip min-width="200"/>
       <el-table-column label="产业类型" prop="subType" width="120"/>
       <el-table-column label="状态" prop="state" width="80"/>
-      <el-table-column label="评分" prop="grade" width="100"/>
+      <el-table-column label="评分" prop="grade" width="60"/>
       <el-table-column label="提问时间" width="180">
         <template slot-scope="scope">
-          <i class="el-icon-time"/>
-          <span style="margin-left: 10px">{{ scope.row.pubdate }}</span>
+          <span>{{ scope.row.pubdate }}</span>
         </template>
       </el-table-column>
       <el-table-column label="操作" width="150">

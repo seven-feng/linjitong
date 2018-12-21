@@ -74,7 +74,7 @@ export default {
       this.getlist()
     },
     handleEdit(index, row) { // 编辑按钮
-      if(this.$route.name === 'knowledgeList') {
+      if (this.$route.name === 'knowledgeList') {
         this.$router.push({ name: 'knowledgeDetail', params: { id: row.id }}) // 跳转消息详情页
       } else {
         this.$router.push({ name: 'appKnowledgeDetail', params: { id: row.id }}) // 跳转app消息详情页

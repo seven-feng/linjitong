@@ -197,9 +197,16 @@ export default {
     handleSubmit(formName) { // 提交表单
       this.$refs[formName].validate(valid => {
         if (valid) {
-          // const formData = new FormData()
-          debugger
-          postMessage(this.form)
+          const formData = new FormData()
+          this.files.map(item => {
+            formData.append('files', item)
+          })
+          formData.append('title', this.form.title)
+          formData.append('areaName', this.form.areaName)
+          formData.append('areaId', this.form.areaId)
+          formData.append('intro', this.form.intro)
+          formData.append('uploadType', this.form.uploadType)
+          postMessage(formData)
             .then(() => {
               this.$message({ message: '提交成功！', type: 'success', center: true })
               this.$router.go(-1)

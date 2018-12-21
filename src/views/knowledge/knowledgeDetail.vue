@@ -17,7 +17,7 @@
       <el-form-item label="附件">
         <div v-for="(file, index) in form.files" :key="index">
           <a :href="'/TDS/' + file" style="text-decoration:underline;">
-              {{ file.substring(file.lastIndexOf('/') + 1, file.length) }}
+            {{ file.substring(file.lastIndexOf('/') + 1, file.length) }}
           </a>
         </div>
       </el-form-item>
@@ -73,5 +73,3 @@ export default {
     color: #606266;
   }
 </style>
-
-

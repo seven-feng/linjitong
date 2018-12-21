@@ -110,6 +110,13 @@ export const constantRouterMap = [
         meta: { title: '林技问答列表', icon: 'table' }
       },
       {
+        path: 'questionDetail',
+        name: 'questionDetail',
+        hidden: true,
+        component: () => import('@/views/question/questionDetail'),
+        meta: { title: '详情' }
+      },
+      {
         path: 'tree',
         redirect: '/app',
         name: 'tree',
@@ -145,8 +152,19 @@ export const constantRouterMap = [
   {
     path: '/app/knowledgeDetail',
     name: 'appKnowledgeDetail',
-    hidden: true,
     component: () => import('@/views/knowledge/knowledgeDetail'),
+    hidden: true
+  },
+  {
+    path: '/app/questionList',
+    name: 'appQuestionList',
+    component: () => import('@/views/question/questionList'),
+    hidden: true
+  },
+  {
+    path: '/app/questionDetail',
+    name: 'appQuestionDetail',
+    component: () => import('@/views/question/questionDetail'),
     hidden: true
   },
 
