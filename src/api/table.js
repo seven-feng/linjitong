@@ -1,12 +1,5 @@
 import request from '@/utils/request'
-
-export function getList(params) {
-  return request({
-    url: '/table/list',
-    method: 'get',
-    params
-  })
-}
+import axios from 'axios'
 
 // 获取消息列表
 export function getMessageList(params) {
@@ -17,6 +10,7 @@ export function getMessageList(params) {
   })
 }
 
+// 删除消息
 export function delMessageList(id) {
   return request({
     url: '/message',
@@ -27,15 +21,9 @@ export function delMessageList(id) {
   })
 }
 
+// 发布消息
 export function postMessage(formData) {
-  debugger
-  return request({
-    url: '/message',
-    method: 'post',
-    params: {
-      ...formData
-    }
-  })
+  return axios.post('/message', formData)
 }
 
 // 获取知识列表
@@ -47,6 +35,7 @@ export function getKnowledgeList(params) {
   })
 }
 
+// 删除知识
 export function delKnowledgeList(id) {
   return request({
     url: '/knowledge',
@@ -55,6 +44,11 @@ export function delKnowledgeList(id) {
       id
     }
   })
+}
+
+// 发布知识
+export function postKnowledge(formData) {
+  return axios.post('/knowledge', formData)
 }
 
 // 获取问答列表

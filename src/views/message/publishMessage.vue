@@ -13,15 +13,17 @@
       </el-form-item>
       <el-form-item label="图片">
         <el-upload
-          :on-preview="handlePictureCardPreview"
+          :file-list="imageList"
+          :auto-upload="false"
+          :before-remove="beforeRemove"
+          :on-change="handleChange"
           :on-remove="handleRemove"
-          action="https://jsonplaceholder.typicode.com/posts/"
-          list-type="picture-card" >
+          action=""
+          list-type="picture-card"
+          style="min-width: 275px; max-width: 500px;">
           <i class="el-icon-plus"/>
+          <div slot="tip" class="el-upload__tip">请上传jpg/png文件</div>
         </el-upload>
-        <el-dialog :visible.sync="dialogVisible">
-          <img :src="dialogImageUrl" width="100%" alt="">
-        </el-dialog>
       </el-form-item>
 
       <el-form-item label="方式" prop="uploadType">
@@ -98,8 +100,8 @@ export default {
         label: 'label'
       },
       areaDialogVisible: false, // 区域选择对话框
-      dialogImageUrl: '',
-      dialogVisible: false,
+      imageList: [], // 上传图片列表
+      images: [],
       fileList: [], // 上传文件列表
       files: [],
       content:
@@ -170,11 +172,16 @@ export default {
       this.$refs['form'].clearValidate('area') // 选择区域以后，手动清楚表单验证
     },
     handleRemove(file, fileList) {
-      console.log(file, fileList)
+      this.images = []
+      fileList.map(item => {
+        this.images.push(item.raw)
+      })
     },
-    handlePictureCardPreview(file) {
-      this.dialogImageUrl = file.url
-      this.dialogVisible = true
+    handleChange(file, fileList) {
+      this.images = []
+      fileList.map(item => {
+        this.images.push(item.raw)
+      })
     },
     beforeRemove(file, fileList) {
       return this.$confirm(`确定移除 ${file.name}？`, {
@@ -198,14 +205,18 @@ export default {
       this.$refs[formName].validate(valid => {
         if (valid) {
           const formData = new FormData()
-          this.files.map(item => {
+          formData.append('title', this.form.title) // 标题
+          formData.append('areaName', this.form.areaName) // 区域名称
+          formData.append('areaId', this.form.areaId) // 区域id
+          formData.append('intro', this.form.intro) // 简介
+          this.images.map(item => { // 上传图片
+            formData.append('images', item)
+          })
+          formData.append('uploadType', this.form.uploadType) // 方式
+          formData.append('uploadType', this.content) // HTML 内容
+          this.files.map(item => { // 上传文件
             formData.append('files', item)
           })
-          formData.append('title', this.form.title)
-          formData.append('areaName', this.form.areaName)
-          formData.append('areaId', this.form.areaId)
-          formData.append('intro', this.form.intro)
-          formData.append('uploadType', this.form.uploadType)
           postMessage(formData)
             .then(() => {
               this.$message({ message: '提交成功！', type: 'success', center: true })
@@ -231,5 +242,6 @@ export default {
 <style scoped>
 .tinymce-container {
   margin-bottom: 22px;
+  max-width: 800px;
 }
 </style>

@@ -42,7 +42,7 @@
 </template>
 
 <script>
-import { postMessage } from '@/api/table'
+import { postKnowledge } from '@/api/table'
 
 export default {
   data() {
@@ -96,15 +96,15 @@ export default {
     handleSubmit(formName) { // 提交表单
       this.$refs[formName].validate(valid => {
         if (valid) {
-          var formData = new FormData()
-          this.files.map(item => {
+          const formData = new FormData()
+          formData.append('title', this.form.title) // 标题
+          formData.append('type', this.form.type) // 大类
+          formData.append('subType', this.form.subType) // 子类
+          formData.append('intro', this.form.intro) // 简介
+          this.files.map(item => { // 上传文件
             formData.append('files', item)
           })
-          formData.append('title', this.form.title)
-          formData.append('type', this.form.type)
-          formData.append('subType', this.form.subType)
-          formData.append('intro', this.form.intro)
-          postMessage(formData)
+          postKnowledge(formData)
             .then(() => {
               this.$message({ message: '提交成功！', type: 'success', center: true })
               this.$router.go(-1)
