@@ -10,6 +10,17 @@ export function getMessageList(params) {
   })
 }
 
+// 获取消息
+export function getMessage(id) {
+  return request({
+    url: '/message',
+    method: 'get',
+    params: {
+      id
+    }
+  })
+}
+
 // 删除消息
 export function delMessageList(id) {
   return request({
@@ -32,6 +43,17 @@ export function getKnowledgeList(params) {
     url: '/knowledgelist',
     method: 'get',
     params
+  })
+}
+
+// 获取知识
+export function getKnowledge(id) {
+  return request({
+    url: '/knowledge',
+    method: 'get',
+    params: {
+      id
+    }
   })
 }
 
@@ -60,6 +82,29 @@ export function getQuestionList(params) {
   })
 }
 
+// 获取问题
+export function getQuestion(id) {
+  return request({
+    url: '/question',
+    method: 'get',
+    params: {
+      id
+    }
+  })
+}
+
+// 获取回答
+export function getAnswers(id) {
+  return request({
+    url: '/answers',
+    method: 'get',
+    params: {
+      id
+    }
+  })
+}
+
+// 删除问答
 export function delQuestionList(id) {
   return request({
     url: '/question',
@@ -70,6 +115,7 @@ export function delQuestionList(id) {
   })
 }
 
+// 保存回答
 export function saveAnswer(form) {
   return request({
     url: '/question',

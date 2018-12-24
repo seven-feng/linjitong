@@ -24,13 +24,14 @@
 <script>
 import questionCard from './component/questionCard'
 import answerCard from './component/answerCard'
-import { saveAnswer } from '@/api/table'
+import { getQuestion, getAnswers, saveAnswer } from '@/api/table'
 import { formatTime } from '@/utils'
 
 export default {
   components: { questionCard, answerCard },
   data() {
     return {
+      id: '', // 问题id
       question: {
         name: '叶军',
         time: '2018-12-13 10:48:09',
@@ -68,6 +69,21 @@ export default {
       }
     }
   },
+  created() {
+    this.id = this.$route.params.id
+  },
+  mounted() {
+    getQuestion(this.id).then(res => { // 获取问题
+      if (res.data !== null) {
+        this.question = res.data.question
+      }
+    })
+    getAnswers(this.id).then(res => { // 获取回答
+      if (res.data !== null) {
+        this.answers = res.data.answers
+      }
+    })
+  },
   methods: {
     handleBack() { // 返回上一页
       this.$router.go(-1)
@@ -79,7 +95,6 @@ export default {
     handleSubmit(formName) {
       this.$refs[formName].validate(valid => {
         if (valid) {
-          debugger
           this.form.time = formatTime(new Date()) // 待检测
           saveAnswer(this.form)
             .then(() => {

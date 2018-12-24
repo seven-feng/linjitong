@@ -26,9 +26,12 @@
 </template>
 
 <script>
+// import { getKnowledge } from '@/api/table'
+
 export default {
   data() {
     return {
+      id: '',
       form: {
         title: '油茶产业发展关键技术及应用',
         subType: '油茶',
@@ -36,33 +39,24 @@ export default {
         files: ['123.txt', '345.txt']
       },
       types: ['林技产业'],
-      subTypes: ['竹笋', '山核桃', '香榧', '油茶', '花卉苗木', '其他木本粮油', '林下经济'],
-      fileList: [], // 上传文件列表
-      files: []
+      subTypes: ['竹笋', '山核桃', '香榧', '油茶', '花卉苗木', '其他木本粮油', '林下经济']
     }
   },
+  created() {
+    this.id = this.$route.params.id
+  },
+  mounted() {
+    // getKnowledge(this.id).then(res => {
+    //   if (res.data !== null) {
+    //     this.form.title = res.data.title
+    //     this.form.subType = res.data.subType
+    //     this.form.intro = res.data.intro
+    //     this.form.files = res.data.files
+    //   }
+    // })
+  },
   methods: {
-    handleRemove(file, fileList) {
-      console.log(file, fileList)
-    },
-    beforeRemove(file, fileList) {
-      return this.$confirm(`确定移除 ${file.name}？`, {
-        confirmButtonText: '确定',
-        cancelButtonText: '取消'
-      })
-    },
-    filesChange(file, fileList) {
-      this.files = []
-      fileList.map(item => {
-        this.files.push(item.raw)
-      })
-    },
-    filesRemove(file, fileList) {
-      this.files = []
-      fileList.map(item => {
-        this.files.push(item.raw)
-      })
-    }
+
   }
 }
 </script>
