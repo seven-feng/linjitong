@@ -25,15 +25,12 @@
           <div slot="tip" class="el-upload__tip">请上传jpg/png文件</div>
         </el-upload>
       </el-form-item>
-
-      <el-form-item label="方式" prop="uploadType">
-        <el-radio-group v-model="form.uploadType">
-          <el-radio label="0">使用文件上传</el-radio>
-          <el-radio label="1">使用HMTL编辑器</el-radio>
-        </el-radio-group>
+      <el-form-item label="编辑器">
+        <div class="tinymce-container">
+          <tinymce :height="300" v-model="content"/>
+        </div>
       </el-form-item>
-
-      <el-form-item v-show="form.uploadType === '0'" label="附件" prop="files">
+      <el-form-item label="附件">
         <el-upload
           ref="reportUpload"
           :before-remove="beforeRemove"
@@ -48,25 +45,19 @@
           <div slot="tip" class="el-upload__tip">如需更改，请重新上传所有文件</div>
         </el-upload>
       </el-form-item>
-
-      <div v-show="form.uploadType === '1'" class="tinymce-container">
-        <tinymce :height="300" v-model="content"/>
-      </div>
-
       <el-form-item>
         <el-button type="primary" @click="handleSubmit('form')">发布</el-button>
         <el-button @click="resetForm('form')">重置</el-button>
       </el-form-item>
-
-      <el-dialog :visible.sync="areaDialogVisible" width="300px" lock-scroll top="10vh">
-        <el-tree :load="loadArea" :props="defaultProps" lazy accordion @node-click="handleTreeClick"/>
+      <el-dialog :visible.sync="areaDialogVisible" width="300px" lock-scroll top="10vh" class="area-dialog">
+        <el-tree :data="treeData" :props="defaultProps" accordion @node-click="handleTreeClick"/>
       </el-dialog>
     </el-form>
   </div>
 </template>
 
 <script>
-import { postMessage } from '@/api/table'
+import { postMessage, getArea } from '@/api/table'
 import Tinymce from '@/components/Tinymce'
 
 export default {
@@ -78,22 +69,16 @@ export default {
         areaName: '',
         areaId: '',
         intro: '',
-        images: [],
-        uploadType: ''
+        images: []
       },
+      treeData: [],
       rules: { // 表单验证规则
         title: [
           { required: true, message: '请输入标题', trigger: 'blur' }
         ],
         areaName: [
-          { required: true, message: '请选择区域', trigger: 'blur' }
-        ],
-        uploadType: [
-          { required: true, message: '请选择上传方式', trigger: 'change' }
+          { required: true, message: '请选择区域', trigger: 'change' }
         ]
-        // files: [
-        //   { required: true, message: '请上传文件', trigger: 'change' }
-        // ]
       },
       defaultProps: { // 树形控件属性
         children: 'children',
@@ -104,72 +89,23 @@ export default {
       images: [],
       fileList: [], // 上传文件列表
       files: [],
-      content:
-      `<h1 style="text-align: center;">Welcome to the TinyMCE demo!</h1><p style="text-align: center; font-size: 15px;"><img title="TinyMCE Logo" src="//www.tinymce.com/images/glyph-tinymce@2x.png" alt="TinyMCE Logo" width="110" height="97" /><ul>
-        <li>Our <a href="//www.tinymce.com/docs/">documentation</a> is a great resource for learning how to configure TinyMCE.</li><li>Have a specific question? Visit the <a href="https://community.tinymce.com/forum/">Community Forum</a>.</li><li>We also offer enterprise grade support as part of <a href="https://tinymce.com/pricing">TinyMCE premium subscriptions</a>.</li>
-      </ul>`
+      content: ''
     }
+  },
+  created() {
+    getArea().then(res => {
+      this.treeData = res.data
+    })
   },
   methods: {
     handleAreaDialog() { // 显示区域选择框
       this.areaDialogVisible = true
     },
-    loadArea(node, resolve) {
-      if (node.level === 0) {
-        return resolve([{ id: '000', label: '浙江' }])
-      }
-      if (node.level > 2) return resolve([]) // 只有三层
-
-      // setTimeout(() => {
-      //   getIssueSecondType(node.data.id).then(res => {
-      //     resolve(res.data)
-      //   })
-      // }, 500)
-      setTimeout(() => {
-        const data = [{
-          id: 1,
-          label: '一级 1',
-          children: [{
-            id: 4,
-            label: '二级 1-1',
-            children: [{
-              id: 9,
-              label: '三级 1-1-1'
-            }, {
-              id: 10,
-              label: '三级 1-1-2'
-            }]
-          }]
-        }, {
-          id: 2,
-          label: '一级 2',
-          children: [{
-            id: 5,
-            label: '二级 2-1'
-          }, {
-            id: 6,
-            label: '二级 2-2'
-          }]
-        }, {
-          id: 3,
-          label: '一级 3',
-          children: [{
-            id: 7,
-            label: '二级 3-1'
-          }, {
-            id: 8,
-            label: '二级 3-2'
-          }]
-        }]
-
-        resolve(data)
-      }, 500)
-    },
     handleTreeClick(data, node) {
       this.form.areaId = data.id
       this.form.areaName = data.label
       this.areaDialogVisible = false
-      this.$refs['form'].clearValidate('area') // 选择区域以后，手动清楚表单验证
+      this.$refs['form'].clearValidate('area') // 选择区域以后，手动清除表单验证
     },
     handleRemove(file, fileList) {
       this.images = []
@@ -212,8 +148,7 @@ export default {
           this.images.map(item => { // 上传图片
             formData.append('images', item)
           })
-          formData.append('uploadType', this.form.uploadType) // 方式
-          formData.append('uploadType', this.content) // HTML 内容
+          formData.append('content', this.content) // HTML 内容
           this.files.map(item => { // 上传文件
             formData.append('files', item)
           })
@@ -239,7 +174,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .tinymce-container {
   margin-bottom: 22px;
   max-width: 800px;

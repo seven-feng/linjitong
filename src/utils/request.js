@@ -32,7 +32,7 @@ service.interceptors.response.use(
       Message({
         message: res.message,
         type: 'error',
-        duration: 5 * 1000
+        duration: 5 * 100000
       })
       return Promise.reject('error')
     } else {
@@ -44,7 +44,7 @@ service.interceptors.response.use(
     Message({
       message: error.message,
       type: 'error',
-      duration: 5 * 1000
+      duration: 5 * 100000
     })
     return Promise.reject(error)
   }

@@ -34,7 +34,15 @@ export function delMessageList(id) {
 
 // 发布消息
 export function postMessage(formData) {
-  return axios.post('/message', formData)
+  return axios.post('/TDS/message', formData)
+}
+
+// 获取区域
+export function getArea() {
+  return request({
+    url: '/area',
+    method: 'get'
+  })
 }
 
 // 获取知识列表
@@ -70,7 +78,7 @@ export function delKnowledgeList(id) {
 
 // 发布知识
 export function postKnowledge(formData) {
-  return axios.post('/knowledge', formData)
+  return axios.post('/TDS/knowledge', formData)
 }
 
 // 获取问答列表
