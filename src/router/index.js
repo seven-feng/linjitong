@@ -118,7 +118,7 @@ export const constantRouterMap = [
       },
       {
         path: 'tree',
-        redirect: '/app',
+        redirect: '/app/register',
         name: 'tree',
         component: () => import('@/views/tree/index'),
         meta: { title: '微信公众号', icon: 'tree' }
@@ -126,6 +126,16 @@ export const constantRouterMap = [
     ]
   },
 
+  {
+    path: '/app/login',
+    name: 'appLogin',
+    component: () => import('@/views/applogin')
+  },
+  {
+    path: '/app/register',
+    name: 'appLogin',
+    component: () => import('@/views/register')
+  },
   {
     path: '/app',
     name: 'app',
@@ -167,19 +177,6 @@ export const constantRouterMap = [
     component: () => import('@/views/question/questionDetail'),
     hidden: true
   },
-
-  // {
-  //   path: '/form',
-  //   component: Layout,
-  //   children: [
-  //     {
-  //       path: 'index',
-  //       name: 'Form',
-  //       component: () => import('@/views/form/index'),
-  //       meta: { title: 'Form', icon: 'form' }
-  //     }
-  //   ]
-  // },
 
   // {
   //   path: '/nested',
