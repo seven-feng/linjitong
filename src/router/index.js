@@ -118,7 +118,7 @@ export const constantRouterMap = [
       },
       {
         path: 'tree',
-        redirect: '/app/register',
+        redirect: '/app/login',
         name: 'tree',
         component: () => import('@/views/tree/index'),
         meta: { title: '微信公众号', icon: 'tree' }
@@ -133,7 +133,7 @@ export const constantRouterMap = [
   },
   {
     path: '/app/register',
-    name: 'appLogin',
+    name: 'appRegister',
     component: () => import('@/views/register')
   },
   {
@@ -150,7 +150,7 @@ export const constantRouterMap = [
   {
     path: '/app/messageDetail',
     name: 'appMessageDetail',
-    component: () => import('@/views/message/messageDetail'),
+    component: () => import('@/views/app/message/messageDetail'),
     hidden: true
   },
   {

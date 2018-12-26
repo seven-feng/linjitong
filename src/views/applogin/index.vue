@@ -102,6 +102,9 @@ export default {
           return false
         }
       })
+    },
+    handleRegister() {
+      this.$router.push({ name: 'appRegister' })
     }
   }
 }

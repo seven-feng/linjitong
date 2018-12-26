@@ -44,7 +44,7 @@
 export default {
   data() {
     return {
-      items: ['/static/1.jpg', '/static/2.jpg']
+      items: ['/TDS/static/1.jpg', '/TDS/static/2.jpg']
     }
   },
   methods: {

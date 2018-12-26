@@ -26,7 +26,7 @@
 </template>
 
 <script>
-// import { getKnowledge } from '@/api/table'
+import { getKnowledge } from '@/api/table'
 
 export default {
   data() {
@@ -46,14 +46,14 @@ export default {
     this.id = this.$route.params.id
   },
   mounted() {
-    // getKnowledge(this.id).then(res => {
-    //   if (res.data !== null) {
-    //     this.form.title = res.data.title
-    //     this.form.subType = res.data.subType
-    //     this.form.intro = res.data.intro
-    //     this.form.files = res.data.files
-    //   }
-    // })
+    getKnowledge(this.id).then(res => {
+      if (res.data !== null) {
+        this.form.title = res.data.title
+        this.form.subType = res.data.subType
+        this.form.intro = res.data.intro
+        this.form.files = res.data.fileUrls
+      }
+    })
   },
   methods: {
 
