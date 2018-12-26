@@ -4,17 +4,16 @@
     <breadcrumb />
     <el-dropdown class="avatar-container" trigger="click">
       <div class="avatar-wrapper">
-        <img :src="avatar+'?imageView2/1/w/80/h/80'" class="user-avatar">
-        <i class="el-icon-caret-bottom"/>
+        <!-- <img :src="avatar+'?imageView2/1/w/80/h/80'" class="user-avatar"> -->
+        <!-- <i class="el-icon-caret-bottom"/> -->
+        <i class="el-icon-menu"/>
       </div>
       <el-dropdown-menu slot="dropdown" class="user-dropdown">
         <router-link class="inlineBlock" to="/">
-          <el-dropdown-item>
-            Home
-          </el-dropdown-item>
+          <el-dropdown-item>主页</el-dropdown-item>
         </router-link>
         <el-dropdown-item divided>
-          <span style="display:block;" @click="logout">LogOut</span>
+          <span style="display:block;" @click="logout">登出</span>
         </el-dropdown-item>
       </el-dropdown-menu>
     </el-dropdown>
@@ -87,6 +86,12 @@ export default {
         right: -20px;
         top: 25px;
         font-size: 12px;
+      }
+      .el-icon-menu {
+        position: absolute;
+        right: -10px;
+        top: 10px;
+        font-size: 20px;
       }
     }
   }
