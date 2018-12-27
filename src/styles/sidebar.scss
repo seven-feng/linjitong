@@ -41,6 +41,8 @@
     }
     .svg-icon {
       margin-right: 16px;
+      font-size: 18px; // iconfont下载下来的icon比较小,并没有填满这个svg，所以增大型号
+      vertical-align: middle;
     }
     .el-menu {
       border: none;

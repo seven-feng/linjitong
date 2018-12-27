@@ -6,7 +6,7 @@
       <div class="avatar-wrapper">
         <!-- <img :src="avatar+'?imageView2/1/w/80/h/80'" class="user-avatar"> -->
         <!-- <i class="el-icon-caret-bottom"/> -->
-        <i class="el-icon-menu"/>
+        <svg-icon icon-class="account" class="svg-icon"/>
       </div>
       <el-dropdown-menu slot="dropdown" class="user-dropdown">
         <router-link class="inlineBlock" to="/">
@@ -87,7 +87,7 @@ export default {
         top: 25px;
         font-size: 12px;
       }
-      .el-icon-menu {
+      .svg-icon {
         position: absolute;
         right: -10px;
         top: 10px;

@@ -25,25 +25,31 @@ export const constantRouterMap = [
   { path: '/login', component: () => import('@/views/login/index'), hidden: true },
   { path: '/404', component: () => import('@/views/404'), hidden: true },
 
+  // {
+  //   path: '/',
+  //   component: Layout,
+  //   redirect: '/dashboard',
+  //   name: 'Dashboard',
+  //   hidden: true,
+  //   children: [{
+  //     path: 'dashboard',
+  //     component: () => import('@/views/dashboard/index')
+  //   }]
+  // },
+
+  // web端
   {
     path: '/',
-    component: Layout,
-    // redirect: '/dashboard',
     redirect: '/message',
-    name: 'Dashboard',
-    hidden: true,
-    children: [{
-      path: 'dashboard',
-      component: () => import('@/views/dashboard/index')
-    }]
+    hidden: true
   },
-
+  // 通知公告
   {
     path: '/message',
     component: Layout,
     redirect: '/message/messageList',
     name: 'message',
-    meta: { title: '通知公告', icon: 'example' },
+    meta: { title: '通知公告', icon: 'message' },
     children: [
       {
         path: 'messageList',
@@ -66,13 +72,13 @@ export const constantRouterMap = [
       }
     ]
   },
-
+  // 空中课堂
   {
     path: '/knowledge',
     component: Layout,
     redirect: '/knowledge/knowledgeList',
     name: 'knowledge',
-    meta: { title: '空中课堂', icon: 'example' },
+    meta: { title: '空中课堂', icon: 'knowledge' },
     children: [
       {
         path: 'knowledgeList',
@@ -95,19 +101,19 @@ export const constantRouterMap = [
       }
     ]
   },
-
+  // 林技问答
   {
     path: '/question',
     component: Layout,
     redirect: '/question/questionList',
     name: 'question',
-    meta: { title: '林技问答', icon: 'example' },
+    meta: { title: '林技问答', icon: 'question' },
     children: [
       {
         path: 'questionList',
         name: 'questionList',
         component: () => import('@/views/question/questionList'),
-        meta: { title: '林技问答列表', icon: 'table' }
+        meta: { title: '林技问答列表', icon: 'question' }
       },
       {
         path: 'questionDetail',
@@ -115,31 +121,24 @@ export const constantRouterMap = [
         hidden: true,
         component: () => import('@/views/question/questionDetail'),
         meta: { title: '详情' }
-      },
-      {
-        path: 'tree',
-        redirect: '/app/login',
-        name: 'tree',
-        component: () => import('@/views/tree/index'),
-        meta: { title: '微信公众号', icon: 'tree' }
       }
     ]
   },
 
-  // app 路由
+  // app端
   {
     path: '/app/login',
     name: 'appLogin',
-    component: () => import('@/views/applogin')
+    component: () => import('@/views/app/login')
   },
   {
     path: '/app/register',
     name: 'appRegister',
-    component: () => import('@/views/register')
+    component: () => import('@/views/app/register')
   },
   {
-    path: '/app',
-    name: 'app',
+    path: '/app/Home',
+    name: 'appHome',
     component: () => import('@/views/app')
   },
   {
@@ -194,7 +193,7 @@ export const constantRouterMap = [
 ]
 
 export default new Router({
-  mode: 'history', // 后端支持可开
+  // mode: 'history', // 后端支持可开
   scrollBehavior: () => ({ y: 0 }),
   routes: constantRouterMap
 })

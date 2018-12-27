@@ -26,7 +26,7 @@
       </el-form-item>
       <el-form-item prop="verification">
         <el-input v-model="registerForm.verification" name="verification" type="text" auto-complete="on">
-          <el-button slot="append">获取验证码</el-button>
+          <el-button slot="append" @click="handleVerification">获取验证码</el-button>
         </el-input>
       </el-form-item>
       <el-form-item>
@@ -44,6 +44,8 @@
 <script>
 // import { isvalidUsername } from '@/utils/validate'
 import { getArea } from '@/api/table'
+import { postVerification } from '@/api/login'
+import { Message } from 'element-ui'
 export default {
   data() {
     // const validateUsername = (rule, value, callback) => {
@@ -69,11 +71,11 @@ export default {
     }
     return {
       registerForm: {
-        username: '',
-        password: '',
-        areaName: '',
-        areaId: '',
-        phone: '',
+        username: '', // 用户名
+        password: '', // 密码
+        areaName: '', // 地区
+        areaId: '', // 地区id
+        phone: '', // 手机号
         verification: '' // 验证码
       },
       registerRules: {
@@ -117,6 +119,18 @@ export default {
       this.registerForm.areaName = data.label
       this.areaDialogVisible = false
       this.$refs['registerForm'].clearValidate('area') // 选择区域以后，手动清除表单验证
+    },
+    handleVerification() {
+      debugger
+      postVerification(this.registerForm.phone).then(res => {
+        if (res.code === '0') {
+          Message({
+            message: res.message,
+            type: 'success',
+            duration: 5 * 1000
+          })
+        }
+      })
     },
     handleRegister() {
       this.$refs.registerForm.validate(valid => {

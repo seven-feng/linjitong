@@ -8,8 +8,8 @@
     <el-row :gutter="10" style="margin-top: 10px;">
       <el-col :span="8">
         <div class="card-panel" @click="handleMessage">
-          <div class="card-panel-icon-wrapper icon-people">
-            <svg-icon icon-class="people" class-name="card-panel-icon" />
+          <div class="card-panel-icon-wrapper icon-message">
+            <svg-icon icon-class="message" class-name="card-panel-icon" />
           </div>
           <div class="card-panel-description">
             <div class="card-panel-text">通知公告</div>
@@ -18,8 +18,8 @@
       </el-col>
       <el-col :span="8">
         <div class="card-panel" @click="handleKnowledge">
-          <div class="card-panel-icon-wrapper icon-money">
-            <svg-icon icon-class="money" class-name="card-panel-icon" />
+          <div class="card-panel-icon-wrapper icon-knowledge">
+            <svg-icon icon-class="knowledge" class-name="card-panel-icon" />
           </div>
           <div class="card-panel-description">
             <div class="card-panel-text">空中课堂</div>
@@ -28,8 +28,8 @@
       </el-col>
       <el-col :span="8">
         <div class="card-panel" @click="handleQuestion">
-          <div class="card-panel-icon-wrapper icon-message">
-            <svg-icon icon-class="message" class-name="card-panel-icon" />
+          <div class="card-panel-icon-wrapper icon-question">
+            <svg-icon icon-class="question" class-name="card-panel-icon" />
           </div>
           <div class="card-panel-description">
             <div class="card-panel-text">林技问答</div>
@@ -89,35 +89,35 @@ export default {
     border-radius: 4px;
     box-shadow: 4px 4px 40px rgba(0, 0, 0, .05);
     border-color: rgba(0, 0, 0, .05);
-    &:hover {
+    & {
       .card-panel-icon-wrapper {
         color: #fff;
       }
-      .icon-people {
-         background: #40c9c6;
-      }
-      .icon-message {
+      .icon-question {
         background: #36a3f7;
       }
-      .icon-money {
+      .icon-message {
         background: #f4516c;
+      }
+      .icon-knowledge {
+        background: #40c9c6;
       }
       .icon-shopping {
         background: #34bfa3
       }
     }
-    .icon-people {
-      color: #40c9c6;
-    }
-    .icon-message {
-      color: #36a3f7;
-    }
-    .icon-money {
-      color: #f4516c;
-    }
-    .icon-shopping {
-      color: #34bfa3
-    }
+    // .icon-question {
+    //   color: #36a3f7;
+    // }
+    // .icon-message {
+    //   color: #f4516c;
+    // }
+    // .icon-knowledge {
+    //   color: #f4516c;
+    // }
+    // .icon-shopping {
+    //   color: #34bfa3
+    // }
     .card-panel-icon-wrapper {
       margin: 15px auto 10px;
       padding: 5px;
