@@ -63,6 +63,7 @@ export default {
       this.getlist()
     },
     handleEdit(index, row) { // 编辑按钮
+      debugger
       if (this.$route.name === 'messageList') {
         this.$router.push({ name: 'messageDetail', params: { id: row.id }}) // 跳转消息详情页
       } else {

@@ -196,10 +196,9 @@ export const constantRouterMap = [
   {
     path: '/app/questionDetail',
     name: 'appQuestionDetail',
-    component: () => import('@/views/question/questionDetail'),
+    component: () => import('@/views/app/question/questionDetail'),
     hidden: true
   },
-
   // {
   //   path: 'external-link',
   //   component: Layout,

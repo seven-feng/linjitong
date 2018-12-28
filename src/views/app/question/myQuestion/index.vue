@@ -1,9 +1,9 @@
 <template>
   <div style="margin-top: 20px;">
     <div>
-      <el-input v-model="listQuery.title" placeholder="标题" class="filter-item" @keyup.enter.native="handleFilter"/>
+      <el-input v-model="listQuery.title" placeholder="标题" class="filter-item" @input="handleFilter"/>
     </div>
-    <el-table :data="tableData" :show-header="false" style="width: 100%" @row-click="handleEdit">
+    <el-table :data="tableData" :show-header="false" style="width: 100%" @row-click="handleRow">
       <el-table-column label="标题" prop="title" show-overflow-tooltip min-width="200"/>
     </el-table>
     <div class="pagination-container">
@@ -40,6 +40,9 @@ export default {
     handleFilter() { // 标题过滤
       this.listQuery.page = 1
       this.getlist()
+    },
+    handleRow(row) { // 编辑按钮
+      this.$router.push({ name: 'questionDetail', params: { id: row.id }}) // 跳转消息详情页
     },
     handleCurrentChange(val) { // 页码切换
       this.listQuery.page = val
