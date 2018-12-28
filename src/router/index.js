@@ -64,7 +64,7 @@ export const constantRouterMap = [
         meta: { title: '发布信息', icon: 'tree' }
       },
       {
-        path: 'messageDetail',
+        path: 'messageDetail/:id',
         name: 'messageDetail',
         hidden: true,
         component: () => import('@/views/message/messageDetail'),
@@ -93,7 +93,7 @@ export const constantRouterMap = [
         meta: { title: '知识库发布', icon: 'tree' }
       },
       {
-        path: 'knowledgeDetail',
+        path: 'knowledgeDetail/:id',
         name: 'knowledgeDetail',
         hidden: true,
         component: () => import('@/views/knowledge/knowledgeDetail'),
@@ -116,7 +116,7 @@ export const constantRouterMap = [
         meta: { title: '林技问答列表', icon: 'question' }
       },
       {
-        path: 'questionDetail',
+        path: 'questionDetail/:id',
         name: 'questionDetail',
         hidden: true,
         component: () => import('@/views/question/questionDetail'),
@@ -164,6 +164,28 @@ export const constantRouterMap = [
     name: 'appKnowledgeDetail',
     component: () => import('@/views/knowledge/knowledgeDetail'),
     hidden: true
+  },
+  {
+    path: '/app/question',
+    name: 'question',
+    component: () => import('@/views/app/question'),
+    hidden: true,
+    children: [
+      {
+        path: 'questionList',
+        component: () => import('@/views/app/question/questionList')
+      },
+      {
+        path: 'myQuestion',
+        name: 'myQuestion',
+        component: () => import('@/views/app/question/myQuestion')
+      },
+      {
+        path: 'allQuestion',
+        name: 'allQuestion',
+        component: () => import('@/views/app/question/allQuestion')
+      }
+    ]
   },
   {
     path: '/app/questionList',
