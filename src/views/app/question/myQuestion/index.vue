@@ -1,7 +1,9 @@
 <template>
   <div style="margin-top: 20px;">
-    <div>
-      <el-input v-model="listQuery.title" placeholder="标题" class="filter-item" @input="handleFilter"/>
+    <div class="filter-container">
+      <el-input v-model="listQuery.title" placeholder="标题" type="text" size="small">
+        <el-button slot="append" @click="handleFilter">搜索</el-button>
+      </el-input>
     </div>
     <el-table :data="tableData" :show-header="false" style="width: 100%" @row-click="handleRow">
       <el-table-column label="标题" prop="title" show-overflow-tooltip min-width="200"/>
@@ -9,7 +11,7 @@
     <div class="pagination-container">
       <el-pagination v-show="total > 0" :page-size="10" :total="total" layout="prev, pager, next" background @current-change="handleCurrentChange"/>
     </div>
-    <el-button type="primary" style="width: 100%; margin-top: 20px;">提问</el-button>
+    <el-button type="primary" style="width: 100%; margin-top: 20px;" @click="handleQuestion">提问</el-button>
   </div>
 </template>
 
@@ -41,12 +43,15 @@ export default {
       this.listQuery.page = 1
       this.getlist()
     },
-    handleRow(row) { // 编辑按钮
-      this.$router.push({ name: 'questionDetail', params: { id: row.id }}) // 跳转消息详情页
+    handleRow(row) { // 跳转消息详情页
+      this.$router.push({ name: 'questionDetail', params: { id: row.id }})
     },
     handleCurrentChange(val) { // 页码切换
       this.listQuery.page = val
       this.getlist()
+    },
+    handleQuestion() { // 提问按钮
+      this.$router.push({ name: 'appPublishQuestion' })
     }
   }
 }

@@ -38,7 +38,6 @@ export function logout() {
 
 // 发送验证码
 export function postVerification(phone) {
-  debugger
   return request({
     url: '/user/verification',
     method: 'post',

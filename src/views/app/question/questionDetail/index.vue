@@ -122,4 +122,7 @@ export default {
     min-width: 275px;
     max-width: 600px;
   }
+  .el-message-box {
+    width: 275px;
+  }
 </style>

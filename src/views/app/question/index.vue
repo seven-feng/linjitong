@@ -14,7 +14,7 @@
 export default {
   data() {
     return {
-      radio: '我的提问'
+      radio: '问题总览'
     }
   },
   methods: {

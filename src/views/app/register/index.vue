@@ -25,7 +25,7 @@
         <el-input v-model="registerForm.phone" type="text" placeholder="手机号"/>
       </el-form-item>
       <el-form-item prop="verification">
-        <el-input v-model="registerForm.verification" name="verification" type="text" auto-complete="on">
+        <el-input v-model="registerForm.verification" name="verification" type="text">
           <el-button slot="append" @click="handleVerification">获取验证码</el-button>
         </el-input>
       </el-form-item>
@@ -121,7 +121,6 @@ export default {
       this.$refs['registerForm'].clearValidate('area') // 选择区域以后，手动清除表单验证
     },
     handleVerification() {
-      debugger
       postVerification(this.registerForm.phone).then(res => {
         if (res.code === '0') {
           Message({

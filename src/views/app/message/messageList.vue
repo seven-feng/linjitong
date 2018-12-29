@@ -1,8 +1,8 @@
 <template>
   <div class="app-container">
     <div class="filter-container">
-      <el-input v-model="listQuery.title" placeholder="标题" style="width: 200px;" class="filter-item" size="mini" @keyup.enter.native="handleFilter"/>
-      <el-button class="filter-item" type="primary" icon="el-icon-search" size="mini" @click="handleFilter">{{ "搜索" }}</el-button>
+      <el-input v-model="listQuery.title" placeholder="标题" style="width: 200px;" class="filter-item" size="small" @keyup.enter.native="handleFilter"/>
+      <el-button class="filter-item" type="primary" icon="el-icon-search" size="small" @click="handleFilter">{{ "搜索" }}</el-button>
     </div>
     <el-table :data="tableData" style="width: 100%;">
       <el-table-column label="序号" type="index" width="60"/>
@@ -22,7 +22,7 @@
       </el-table-column>
     </el-table>
     <div class="pagination-container">
-      <el-pagination v-show="total > 0" :page-size="10" :total="total" layout="total, prev, pager, next" background @current-change="handleCurrentChange"/>
+      <el-pagination v-show="total > 0" :page-size="10" :total="total" layout="prev, pager, next" background @current-change="handleCurrentChange"/>
     </div>
   </div>
 </template>

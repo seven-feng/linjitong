@@ -126,11 +126,16 @@ export function delQuestionList(id) {
 // 保存回答
 export function saveAnswer(form) {
   return request({
-    url: '/question',
+    url: '/answer',
     method: 'post',
     params: {
       form
     }
   })
+}
+
+// 发布问题
+export function postQuestion(formData) {
+  return axios.post('/TDS/question', formData)
 }
 

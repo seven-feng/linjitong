@@ -6,8 +6,10 @@
       <el-tab-pane label="香榧" name="xiangfei"/>
       <el-tab-pane label="其他" name="qita"/>
     </el-tabs>
-    <div>
-      <el-input v-model="listQuery.title" placeholder="标题" class="filter-item" @input="handleFilter"/>
+    <div class="filter-container">
+      <el-input v-model="listQuery.title" placeholder="标题" type="text" size="small">
+        <el-button slot="append" @click="handleFilter">搜索</el-button>
+      </el-input>
     </div>
     <el-table :data="tableData" :show-header="false" style="width: 100%" @row-click="handleRow">
       <el-table-column label="标题" prop="title" show-overflow-tooltip min-width="200"/>

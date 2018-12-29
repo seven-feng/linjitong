@@ -141,10 +141,11 @@ export const constantRouterMap = [
     name: 'appHome',
     component: () => import('@/views/app')
   },
+  // 消息列表
   {
     path: '/app/messageList',
     name: 'appMessageList',
-    component: () => import('@/views/message/messageList'),
+    component: () => import('@/views/app/message/messageList'),
     hidden: true
   },
   {
@@ -156,19 +157,20 @@ export const constantRouterMap = [
   {
     path: '/app/knowledgeList',
     name: 'appKnowledgeList',
-    component: () => import('@/views/knowledge/knowledgeList'),
+    component: () => import('@/views/app/knowledge/knowledgeList'),
     hidden: true
   },
   {
     path: '/app/knowledgeDetail',
     name: 'appKnowledgeDetail',
-    component: () => import('@/views/knowledge/knowledgeDetail'),
+    component: () => import('@/views/app/knowledge/knowledgeDetail'),
     hidden: true
   },
   {
     path: '/app/question',
-    name: 'question',
+    name: 'appQuestion',
     component: () => import('@/views/app/question'),
+    redirect: '/app/question/allQuestion',
     hidden: true,
     children: [
       {
@@ -197,6 +199,12 @@ export const constantRouterMap = [
     path: '/app/questionDetail',
     name: 'appQuestionDetail',
     component: () => import('@/views/app/question/questionDetail'),
+    hidden: true
+  },
+  {
+    path: '/app/publishQuestion',
+    name: 'appPublishQuestion',
+    component: () => import('@/views/app/question/publishQuestion'),
     hidden: true
   },
   // {

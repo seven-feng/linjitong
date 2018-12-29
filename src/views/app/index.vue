@@ -55,7 +55,7 @@ export default {
       this.$router.push({ name: 'appKnowledgeList' })
     },
     handleQuestion() {
-      this.$router.push({ name: 'appQuestionList' })
+      this.$router.push({ name: 'appQuestion' })
     }
   }
 
