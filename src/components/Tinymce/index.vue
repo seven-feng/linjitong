@@ -1,9 +1,9 @@
 <template>
   <div :class="{fullscreen:fullscreen}" class="tinymce-container editor-container">
     <textarea :id="tinymceId" class="tinymce-textarea"/>
-    <!-- <div class="editor-custom-btn-container">
+    <div class="editor-custom-btn-container">
       <editorImage color="#1890ff" class="editor-upload-btn" @successCBK="imageSuccessCBK"/>
-    </div> -->
+    </div>
   </div>
 </template>
 
@@ -164,7 +164,7 @@ export default {
 .editor-custom-btn-container {
   position: absolute;
   right: 4px;
-  top: 4px;
+  top: -3px;
   /*z-index: 2005;*/
 }
 .fullscreen .editor-custom-btn-container {
