@@ -6,12 +6,13 @@
       <el-upload
         :multiple="true"
         :file-list="fileList"
+        :headers="headers"
         :show-file-list="true"
         :on-remove="handleRemove"
         :on-success="handleSuccess"
         :before-upload="beforeUpload"
         class="editor-slide-upload"
-        action="/TDS/message/image"
+        action="/TDS/tinymce/image"
         list-type="picture-card">
         <el-button size="small" type="primary">点击上传</el-button>
       </el-upload>
@@ -24,6 +25,8 @@
 <script>
 // import { getToken } from 'api/qiniu'
 // https://www.easy-mock.com/mock/5c124a537a9b075d57f87ce0/ljt/message/image
+
+import { getToken } from '@/utils/auth'
 export default {
   name: 'EditorSlideUpload',
   props: {
@@ -37,6 +40,13 @@ export default {
       dialogVisible: false,
       listObj: {},
       fileList: []
+    }
+  },
+  computed: { // 上传图片添加请求头
+    headers() {
+      return {
+        'X-Token': getToken()
+      }
     }
   },
   methods: {

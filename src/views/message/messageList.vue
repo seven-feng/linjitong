@@ -63,12 +63,7 @@ export default {
       this.getlist()
     },
     handleEdit(index, row) { // 编辑按钮
-      if (this.$route.name === 'messageList') {
-        this.$router.push({ name: 'messageDetail', params: { id: row.id }}) // 跳转消息详情页
-      } else {
-        this.$router.push({ name: 'appMessageDetail', params: { id: row.id }}) // 跳转app消息详情页
-      }
-      console.log(index, row)
+      this.$router.push({ name: 'messageDetail', params: { id: row.id }}) // 跳转消息详情页
     },
     handleDelete(index, row) { // 删除按钮
       // 删除成功以后，重新加载列表

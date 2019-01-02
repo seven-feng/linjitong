@@ -1,5 +1,6 @@
 import request from '@/utils/request'
 import axios from 'axios'
+import { getToken } from '@/utils/auth'
 
 // 获取消息列表
 export function getMessageList(params) {
@@ -34,7 +35,7 @@ export function delMessageList(id) {
 
 // 发布消息
 export function postMessage(formData) {
-  return axios.post('/TDS/message', formData)
+  return axios.post('/TDS/message', formData, { headers: { 'X-Token': getToken() }})
 }
 
 // 获取区域
@@ -78,7 +79,7 @@ export function delKnowledgeList(id) {
 
 // 发布知识
 export function postKnowledge(formData) {
-  return axios.post('/TDS/knowledge', formData)
+  return axios.post('/TDS/knowledge', formData, { headers: { 'X-Token': getToken() }})
 }
 
 // 获取问答列表
@@ -136,6 +137,6 @@ export function saveAnswer(form) {
 
 // 发布问题
 export function postQuestion(formData) {
-  return axios.post('/TDS/question', formData)
+  return axios.post('/TDS/question', formData, { headers: { 'X-Token': getToken() }})
 }
 
