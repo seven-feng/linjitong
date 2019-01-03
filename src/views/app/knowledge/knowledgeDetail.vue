@@ -33,10 +33,10 @@ export default {
     return {
       id: '',
       form: {
-        title: '油茶产业发展关键技术及应用',
-        subType: '油茶',
-        intro: '浙江省林业科学研究院 陈友吾 副研究员',
-        files: ['123.txt', '345.txt']
+        title: '',
+        subType: '',
+        intro: '',
+        files: []
       },
       types: ['林技产业'],
       subTypes: ['竹笋', '山核桃', '香榧', '油茶', '花卉苗木', '其他木本粮油', '林下经济']

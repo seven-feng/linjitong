@@ -1,8 +1,8 @@
 <template>
   <el-card class="box-card">
     <div slot="header" class="card-head">
-      <span>{{ answer.name }}</span>
-      <span>{{ answer.time }}</span>
+      <span>{{ answer.answerUserName }}</span>
+      <span>{{ answer.pubdate }}</span>
     </div>
     <div class="card-text">{{ answer.content }}</div>
   </el-card>
@@ -15,17 +15,12 @@ export default {
       default: function() {
         return {
           answer: {
-            name: '叶军',
-            time: '2018-12-13 10:48:09',
-            content: '想种美国山核桃，请问十公分直径的树多少钱一棵'
+            answerUserName: '',
+            pubdate: '',
+            content: ''
           }
         }
       }
-    }
-  },
-  data() {
-    return {
-
     }
   }
 }

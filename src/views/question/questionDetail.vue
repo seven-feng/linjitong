@@ -25,7 +25,7 @@
 import questionCard from './component/questionCard'
 import answerCard from './component/answerCard'
 import { getQuestion, getAnswers, saveAnswer } from '@/api/table'
-
+import { mapGetters } from 'vuex'
 export default {
   components: { questionCard, answerCard },
   data() {
@@ -52,36 +52,51 @@ export default {
       }
     }
   },
+  computed: {
+    ...mapGetters([
+      'roles'
+    ])
+  },
   created() {
     this.id = this.$route.params.id
   },
   mounted() {
-    getQuestion(this.id).then(res => { // 获取问题
-      if (res.data !== null) {
-        this.question = res.data
-      }
-    })
-    getAnswers(this.id).then(res => { // 获取回答
-      if (res.data !== null) {
-        this.answers = res.data
-      }
-    })
+    this.getDetails()
   },
   methods: {
+    getDetails() {
+      getQuestion(this.id).then(res => { // 获取问题
+        if (res.data !== null) {
+          this.question = res.data
+        }
+      })
+      getAnswers(this.id).then(res => { // 获取回答
+        if (res.data !== null) {
+          this.answers = res.data
+        }
+      })
+    },
     handleBack() { // 返回上一页
       this.$router.go(-1)
     },
     handleReply() { // 回复问题
       this.replyDialogVisible = true // 显示回复对话框
-      this.$refs['form'].resetFields() // 坑：必须对话框显示以后，'form'才起作用
+      this.form.content = ''
     },
     handleSubmit(formName) {
+      console.log(this.roles)
+      if (this.roles.indexOf('expert') < 0) { // 具有“专家”权限才能回复
+        this.$message({ message: '该用户无权限回复！', type: 'error', center: true })
+        return
+      }
       this.$refs[formName].validate(valid => {
         if (valid) {
           this.form.questionId = this.id
           saveAnswer(this.form)
             .then(() => {
               this.$message({ message: '回复成功！', type: 'success', center: true })
+              this.replyDialogVisible = false // 隐藏回复对话框
+              this.getDetails()
             })
             .catch(() => {
               this.$message({ message: '回复失败！', type: 'error', center: true })

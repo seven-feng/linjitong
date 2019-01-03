@@ -130,7 +130,7 @@ export function saveAnswer(form) {
     url: '/answer',
     method: 'post',
     params: {
-      form
+      ...form
     }
   })
 }

@@ -1,36 +1,34 @@
 <template>
   <el-card class="box-card">
     <div slot="header" class="card-head">
-      <span>{{ question.name }}</span>
-      <span>{{ question.time }}</span>
+      <span>{{ question.editor }}</span>
+      <span>{{ question.pubdate }}</span>
+      <span>{{ question.subType }}</span>
     </div>
     <div class="card-title">{{ question.title }}</div>
+    <div v-for="(img, index) in question.imageUrls" :key="index" class="illustration">
+      <img :src="'/TDS' + img">
+    </div>
     <div class="card-text">{{ question.content }}</div>
   </el-card>
 </template>
 <script>
 export default {
-  // props: ['name', 'time', 'type', 'object', 'title', 'content'],
   props: {
     question: {
       type: Object,
       default: function() {
         return {
           question: {
-            name: '叶军',
-            time: '2018-12-13 10:48:09',
-            type: '类型：山核桃',
-            object: '提问对象：胡瑞财',
-            title: '美国山核桃',
-            content: '想种美国山核桃，请问十公分直径的树多少钱一棵'
+            editor: '',
+            pubdate: '',
+            subType: '',
+            title: '',
+            imageUrls: [],
+            content: ''
           }
         }
       }
-    }
-  },
-  data() {
-    return {
-
     }
   }
 }

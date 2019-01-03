@@ -6,7 +6,7 @@
         <span class="svg-container">
           <svg-icon icon-class="user" />
         </span>
-        <el-input v-model="loginForm.username" name="username" type="text" auto-complete="on" placeholder="username" />
+        <el-input v-model="loginForm.username" name="username" type="text" auto-complete="on" placeholder="用户名" />
       </el-form-item>
       <el-form-item prop="password">
         <span class="svg-container">
@@ -17,7 +17,7 @@
           v-model="loginForm.password"
           name="password"
           auto-complete="on"
-          placeholder="password"
+          placeholder="密码"
           @keyup.enter.native="handleLogin" />
         <span class="show-pwd" @click="showPwd">
           <svg-icon icon-class="eye" />
@@ -38,18 +38,18 @@
 </template>
 
 <script>
-import { isvalidUsername } from '@/utils/validate'
+// import { isvalidUsername } from '@/utils/validate'
 
 export default {
   name: 'Login',
   data() {
-    const validateUsername = (rule, value, callback) => {
-      if (!isvalidUsername(value)) {
-        callback(new Error('请输入正确的用户名'))
-      } else {
-        callback()
-      }
-    }
+    // const validateUsername = (rule, value, callback) => {
+    //   if (!isvalidUsername(value)) {
+    //     callback(new Error('请输入正确的用户名'))
+    //   } else {
+    //     callback()
+    //   }
+    // }
     const validatePass = (rule, value, callback) => {
       if (value.length < 5) {
         callback(new Error('密码不能小于5位'))
@@ -59,11 +59,12 @@ export default {
     }
     return {
       loginForm: {
-        username: 'admin',
-        password: 'admin'
+        username: '',
+        password: ''
       },
       loginRules: {
-        username: [{ required: true, trigger: 'blur', validator: validateUsername }],
+        // username: [{ required: true, trigger: 'blur', validator: validateUsername }],
+        username: [{ required: true, message: '请输入用户名', trigger: 'blur' }],
         password: [{ required: true, trigger: 'blur', validator: validatePass }]
       },
       loading: false,

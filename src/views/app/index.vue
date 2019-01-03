@@ -37,6 +37,50 @@
         </div>
       </el-col>
     </el-row>
+    <el-row :gutter="10" style="margin-top: 10px;">
+      <el-col :span="8">
+        <div class="card-panel" @click="handleMessage">
+          <div class="card-panel-icon-wrapper icon-model">
+            <svg-icon icon-class="model" class-name="card-panel-icon" />
+          </div>
+          <div class="card-panel-description">
+            <div class="card-panel-text">典型示范</div>
+          </div>
+        </div>
+      </el-col>
+      <el-col :span="8">
+        <div class="card-panel" @click="handleKnowledge">
+          <div class="card-panel-icon-wrapper icon-supply">
+            <svg-icon icon-class="supply" class-name="card-panel-icon" />
+          </div>
+          <div class="card-panel-description">
+            <div class="card-panel-text">供求信息</div>
+          </div>
+        </div>
+      </el-col>
+      <el-col :span="8">
+        <div class="card-panel" @click="handleQuestion">
+          <div class="card-panel-icon-wrapper icon-expert">
+            <svg-icon icon-class="expert" class-name="card-panel-icon" />
+          </div>
+          <div class="card-panel-description">
+            <div class="card-panel-text">乡土专家</div>
+          </div>
+        </div>
+      </el-col>
+    </el-row>
+    <el-row :gutter="10" style="margin-top: 10px;">
+      <el-col :span="8">
+        <div class="card-panel" @click="handleMessage">
+          <div class="card-panel-icon-wrapper icon-expertdb">
+            <svg-icon icon-class="expertdb" class-name="card-panel-icon" />
+          </div>
+          <div class="card-panel-description">
+            <div class="card-panel-text">专家库</div>
+          </div>
+        </div>
+      </el-col>
+    </el-row>
   </div>
 </template>
 
@@ -105,19 +149,19 @@ export default {
       .icon-shopping {
         background: #34bfa3
       }
+      .icon-model {
+        background: #67C23A
+      }
+      .icon-supply {
+        background: #ffcc00
+      }
+      .icon-expert {
+        background: #ff3b30
+      }
+      .icon-expertdb {
+        background: #5856d6
+      }
     }
-    // .icon-question {
-    //   color: #36a3f7;
-    // }
-    // .icon-message {
-    //   color: #f4516c;
-    // }
-    // .icon-knowledge {
-    //   color: #f4516c;
-    // }
-    // .icon-shopping {
-    //   color: #34bfa3
-    // }
     .card-panel-icon-wrapper {
       margin: 15px auto 10px;
       padding: 5px;

@@ -43,8 +43,8 @@ export default {
       this.listQuery.page = 1
       this.getlist()
     },
-    handleRow(row) { // 跳转消息详情页
-      this.$router.push({ name: 'questionDetail', params: { id: row.id }})
+    handleRow(row) { // 跳转app消息详情页
+      this.$router.push({ name: 'appQuestionDetail', params: { id: row.id }})
     },
     handleCurrentChange(val) { // 页码切换
       this.listQuery.page = val

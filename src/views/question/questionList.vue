@@ -8,8 +8,8 @@
       <el-select v-model="listQuery.type" placeholder="状态" clearable class="filter-item" size="mini" style="width: 130px">
         <el-option v-for="(item, index) in states" :key="index" :label="item" :value="item"/>
       </el-select>
-      <el-date-picker v-model="listQuery.sdate" type="date" placeholder="开始日期" size="mini" style="width: 130px; vertical-align: middle; margin-bottom: 10px;"/>
-      <el-date-picker v-model="listQuery.edate" type="date" placeholder="结束日期" size="mini" style="width: 130px; vertical-align: middle; margin-bottom: 10px;"/>
+      <el-date-picker v-model="listQuery.sdate" type="date" placeholder="开始日期" size="mini" value-format="yyyy-MM-dd HH:mm:ss" style="width: 130px; vertical-align: middle; margin-bottom: 10px;"/>
+      <el-date-picker v-model="listQuery.edate" type="date" placeholder="结束日期" size="mini" value-format="yyyy-MM-dd HH:mm:ss" style="width: 130px; vertical-align: middle; margin-bottom: 10px;"/>
       <el-button class="filter-item" type="primary" icon="el-icon-search" size="mini" @click="handleFilter">{{ "搜索" }}</el-button>
     </div>
 

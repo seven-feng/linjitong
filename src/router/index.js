@@ -55,13 +55,13 @@ export const constantRouterMap = [
         path: 'messageList',
         name: 'messageList',
         component: () => import('@/views/message/messageList'),
-        meta: { title: '消息列表', icon: 'table' }
+        meta: { title: '消息列表', icon: 'list' }
       },
       {
         path: 'publishMessage',
         name: 'publishMessage',
         component: () => import('@/views/message/publishMessage'),
-        meta: { title: '发布信息', icon: 'tree' }
+        meta: { title: '发布信息', icon: 'publish' }
       },
       {
         path: 'messageDetail/:id',
@@ -84,13 +84,13 @@ export const constantRouterMap = [
         path: 'knowledgeList',
         name: 'knowledgeList',
         component: () => import('@/views/knowledge/knowledgeList'),
-        meta: { title: '知识库列表', icon: 'table' }
+        meta: { title: '知识库列表', icon: 'list' }
       },
       {
         path: 'publishKnowledge',
         name: 'publishKnowledge',
         component: () => import('@/views/knowledge/publishKnowledge'),
-        meta: { title: '知识库发布', icon: 'tree' }
+        meta: { title: '知识库发布', icon: 'publish ' }
       },
       {
         path: 'knowledgeDetail/:id',
@@ -107,13 +107,12 @@ export const constantRouterMap = [
     component: Layout,
     redirect: '/question/questionList',
     name: 'question',
-    meta: { title: '林技问答', icon: 'question' },
     children: [
       {
         path: 'questionList',
         name: 'questionList',
         component: () => import('@/views/question/questionList'),
-        meta: { title: '林技问答列表', icon: 'question' }
+        meta: { title: '林技问答', icon: 'question' }
       },
       {
         path: 'questionDetail/:id',
@@ -121,6 +120,62 @@ export const constantRouterMap = [
         hidden: true,
         component: () => import('@/views/question/questionDetail'),
         meta: { title: '详情' }
+      }
+    ]
+  },
+  // 典型示范
+  {
+    path: '/model',
+    component: Layout,
+    name: 'model',
+    children: [
+      {
+        path: 'questionList',
+        name: 'questionList',
+        component: () => import('@/views/question/questionList'),
+        meta: { title: '典型示范', icon: 'model' }
+      }
+    ]
+  },
+  // 供求信息
+  {
+    path: '/supply',
+    component: Layout,
+    name: 'supply',
+    children: [
+      {
+        path: 'questionList',
+        name: 'questionList',
+        component: () => import('@/views/question/questionList'),
+        meta: { title: '供求信息', icon: 'supply' }
+      }
+    ]
+  },
+  // 乡土专家
+  {
+    path: '/expert',
+    component: Layout,
+    name: 'expert',
+    children: [
+      {
+        path: 'questionList',
+        name: 'questionList',
+        component: () => import('@/views/question/questionList'),
+        meta: { title: '乡土专家', icon: 'expert' }
+      }
+    ]
+  },
+  // 专家库
+  {
+    path: '/expertdb',
+    component: Layout,
+    name: 'expertdb',
+    children: [
+      {
+        path: 'questionList',
+        name: 'questionList',
+        component: () => import('@/views/question/questionList'),
+        meta: { title: '专家库', icon: 'expertdb' }
       }
     ]
   },

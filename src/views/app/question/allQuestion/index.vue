@@ -31,7 +31,7 @@ export default {
         page: 1,
         limit: 10,
         title: '',
-        subType: ''
+        subType: '竹笋'
       },
       tableData: []
     }

@@ -5,7 +5,7 @@
         <el-input v-model="form.title" style="min-width: 275px; max-width: 500px;"/>
       </el-form-item>
       <el-form-item label="区域" prop="areaName">
-        <el-input v-model="form.areaName" style="min-width: 275px; max-width: 500px;" @focus="handleAreaDialog"/>
+        <el-input ref="areaInput" v-model="form.areaName" style="min-width: 275px; max-width: 500px;" @focus="handleAreaDialog"/>
         <el-input v-model="form.areaId" style="display: none;"/>
       </el-form-item>
       <el-form-item label="简介" prop="intro">
@@ -75,7 +75,7 @@ export default {
         title: [
           { required: true, message: '请输入标题', trigger: 'blur' }
         ],
-        areaName: [
+        areaId: [
           { required: true, message: '请选择区域', trigger: 'change' }
         ]
       },
@@ -99,6 +99,7 @@ export default {
   methods: {
     handleAreaDialog() { // 显示区域选择框
       this.areaDialogVisible = true
+      this.$refs['areaInput'].blur()
     },
     handleTreeClick(data, node) {
       this.form.areaId = data.id
