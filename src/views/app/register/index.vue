@@ -137,7 +137,7 @@ export default {
           this.loading = true
           this.$store.dispatch('Register', this.registerForm).then(() => {
             this.loading = false
-            this.$router.push({ path: this.redirect || '/' })
+            this.$router.push({ name: 'appHome' }) // 注册成功以后，跳转app首页
           }).catch(() => {
             this.loading = false
           })
