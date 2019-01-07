@@ -5,11 +5,11 @@
       <el-button class="filter-item" type="primary" icon="el-icon-search" size="small" @click="handleFilter">{{ "搜索" }}</el-button>
     </div>
     <el-table :data="tableData" style="width: 100%;">
-      <el-table-column label="序号" type="index" width="60"/>
+      <!-- <el-table-column label="序号" type="index" width="60"/> -->
       <el-table-column label="标题" prop="title" show-overflow-tooltip min-width="200"/>
-      <el-table-column label="简介" prop="intro" class-name="nowrap" min-width="150"/>
-      <el-table-column label="编辑" prop="editor" width="100"/>
-      <el-table-column label="发布时间" width="120">
+      <!-- <el-table-column label="简介" prop="intro" class-name="nowrap" min-width="150"/> -->
+      <!-- <el-table-column label="编辑" prop="editor" width="100"/> -->
+      <el-table-column label="发布时间" width="100">
         <template slot-scope="scope">
           <span>{{ scope.row.pubdate }}</span>
         </template>

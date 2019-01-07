@@ -4,14 +4,13 @@
       <el-input v-model="listQuery.title" placeholder="标题" style="width: 200px;" class="filter-item" size="mini" @keyup.enter.native="handleFilter"/>
       <el-button class="filter-item" type="primary" icon="el-icon-search" size="mini" @click="handleFilter">{{ "搜索" }}</el-button>
     </div>
-
     <el-table :data="tableData" style="width: 100%">
-      <el-table-column label="序号" type="index" width="80"/>
+      <!-- <el-table-column label="序号" type="index" width="80"/> -->
       <el-table-column label="标题" prop="title" show-overflow-tooltip min-width="200"/>
-      <el-table-column label="类别" prop="subType" width="120"/>
-      <el-table-column label="文档类型" prop="docType" width="80"/>
-      <el-table-column label="大小" prop="size" width="100"/>
-      <el-table-column label="发布时间" width="120">
+      <!-- <el-table-column label="类别" prop="subType" width="120"/> -->
+      <!-- <el-table-column label="文档类型" prop="docType" width="80"/> -->
+      <!-- <el-table-column label="大小" prop="size" width="100"/> -->
+      <el-table-column label="发布时间" width="100">
         <template slot-scope="scope">
           <span>{{ scope.row.pubdate }}</span>
         </template>

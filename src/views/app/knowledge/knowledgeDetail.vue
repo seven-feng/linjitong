@@ -2,7 +2,7 @@
   <div class="app-container">
     <el-form ref="form" :model="form" label-position="right" label-width="60px">
       <el-form-item label="标题">
-        <el-input v-model="form.title" readonly style="min-width: 275px; max-width: 500px;"/>
+        <el-input v-model="form.title" disabled style="min-width: 275px; max-width: 500px;"/>
       </el-form-item>
       <el-form-item label="类别">
         <el-select v-model="form.subType" placeholder="类别" clearable disabled class="filter-item select-disabled" style="min-width: 275px;">
@@ -11,7 +11,7 @@
       </el-form-item>
 
       <el-form-item label="简介">
-        <el-input v-model="form.intro" :rows="6" type="textarea" placeholder="输入内容不要超过255个字" readonly style="min-width: 275px; max-width: 500px;"/>
+        <el-input v-model="form.intro" :rows="6" type="textarea" placeholder="输入内容不要超过255个字" disabled style="min-width: 275px; max-width: 500px;"/>
       </el-form-item>
 
       <el-form-item label="附件">
@@ -64,6 +64,14 @@ export default {
 <style lang="scss" scoped>
   /deep/ .select-disabled .el-input__inner {
     background-color: transparent;
-    color: #606266;
+    color: #000;
+  }
+  /deep/ .el-input.is-disabled .el-input__inner {
+    background-color: transparent;
+    color: #000;
+  }
+  /deep/ .el-textarea.is-disabled .el-textarea__inner {
+    background-color: transparent;
+    color: #000;
   }
 </style>
