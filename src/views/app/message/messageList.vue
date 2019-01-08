@@ -4,32 +4,25 @@
       <el-input v-model="listQuery.title" placeholder="标题" style="width: 200px;" class="filter-item" size="small" @keyup.enter.native="handleFilter"/>
       <el-button class="filter-item" type="primary" icon="el-icon-search" size="small" @click="handleFilter">{{ "搜索" }}</el-button>
     </div>
-    <el-table :data="tableData" style="width: 100%;">
-      <!-- <el-table-column label="序号" type="index" width="60"/> -->
+    <el-table :data="tableData" style="width: 100%;" @row-click="handleRow">
       <el-table-column label="标题" prop="title" show-overflow-tooltip min-width="200"/>
-      <!-- <el-table-column label="简介" prop="intro" class-name="nowrap" min-width="150"/> -->
-      <!-- <el-table-column label="编辑" prop="editor" width="100"/> -->
       <el-table-column label="发布时间" width="100">
         <template slot-scope="scope">
           <span>{{ scope.row.pubdate }}</span>
-        </template>
-      </el-table-column>
-      <el-table-column label="操作" width="150">
-        <template slot-scope="scope">
-          <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">详情</el-button>
-          <el-button size="mini" type="danger" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
         </template>
       </el-table-column>
     </el-table>
     <div class="pagination-container">
       <el-pagination v-show="total > 0" :page-size="10" :total="total" layout="prev, pager, next" background @current-change="handleCurrentChange"/>
     </div>
+    <app-footer/>
   </div>
 </template>
-
 <script>
-import { getMessageList, delMessageList } from '@/api/table'
+import { getMessageList } from '@/api/table'
+import appFooter from '../components/footer'
 export default {
+  components: { appFooter },
   data() {
     return {
       total: 12,
@@ -62,22 +55,15 @@ export default {
       this.listQuery.page = val
       this.getlist()
     },
-    handleEdit(index, row) { // 编辑按钮
+    handleRow(row) {
       this.$router.push({ name: 'appMessageDetail', params: { id: row.id }}) // 跳转app消息详情页
-    },
-    handleDelete(index, row) { // 删除按钮
-      // 删除成功以后，重新加载列表
-      delMessageList(row.id).then(resopnse => {
-        this.getlist()
-      })
-      console.log(index, row)
     }
   }
 }
 </script>
-
 <style lang="scss" scoped>
 .app-container {
+  margin-bottom: 60px;
   /deep/ .nowrap .cell {
     white-space: nowrap;
   }

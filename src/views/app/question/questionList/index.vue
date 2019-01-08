@@ -3,7 +3,6 @@
     <div class="filter-container">
       <el-input v-model="listQuery.title" placeholder="标题" class="filter-item" @keyup.enter.native="handleFilter"/>
     </div>
-
     <el-table :data="tableData" :show-header="false" style="width: 100%" @row-click="handleEdit">
       <el-table-column label="标题" prop="title" show-overflow-tooltip min-width="200"/>
       <!-- <el-table-column label="操作" width="150">
@@ -12,7 +11,6 @@
         </template>
       </el-table-column> -->
     </el-table>
-
     <div class="pagination-container">
       <el-pagination v-show="total > 0" :page-size="10" :total="total" layout="total, prev, pager, next" background @current-change="handleCurrentChange"/>
     </div>

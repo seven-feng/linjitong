@@ -5,8 +5,8 @@
         <img :src="item" alt="" style="width: 100%; height: 200px;">
       </el-carousel-item>
     </el-carousel>
-    <el-row :gutter="10" style="margin-top: 10px;">
-      <el-col :span="8">
+    <el-row style="margin-top: 10px;">
+      <el-col :span="6">
         <div class="card-panel" @click="handleMessage">
           <div class="card-panel-icon-wrapper icon-message">
             <svg-icon icon-class="message" class-name="card-panel-icon" />
@@ -16,7 +16,7 @@
           </div>
         </div>
       </el-col>
-      <el-col :span="8">
+      <el-col :span="6">
         <div class="card-panel" @click="handleKnowledge">
           <div class="card-panel-icon-wrapper icon-knowledge">
             <svg-icon icon-class="knowledge" class-name="card-panel-icon" />
@@ -26,7 +26,7 @@
           </div>
         </div>
       </el-col>
-      <el-col :span="8">
+      <el-col :span="6">
         <div class="card-panel" @click="handleQuestion">
           <div class="card-panel-icon-wrapper icon-question">
             <svg-icon icon-class="question" class-name="card-panel-icon" />
@@ -36,9 +36,7 @@
           </div>
         </div>
       </el-col>
-    </el-row>
-    <el-row :gutter="10" style="margin-top: 10px;">
-      <el-col :span="8">
+      <el-col :span="6">
         <div class="card-panel" @click="handleMessage">
           <div class="card-panel-icon-wrapper icon-model">
             <svg-icon icon-class="model" class-name="card-panel-icon" />
@@ -48,7 +46,9 @@
           </div>
         </div>
       </el-col>
-      <el-col :span="8">
+    </el-row>
+    <el-row>
+      <el-col :span="6">
         <div class="card-panel" @click="handleKnowledge">
           <div class="card-panel-icon-wrapper icon-supply">
             <svg-icon icon-class="supply" class-name="card-panel-icon" />
@@ -58,7 +58,7 @@
           </div>
         </div>
       </el-col>
-      <el-col :span="8">
+      <el-col :span="6">
         <div class="card-panel" @click="handleQuestion">
           <div class="card-panel-icon-wrapper icon-expert">
             <svg-icon icon-class="expert" class-name="card-panel-icon" />
@@ -68,9 +68,7 @@
           </div>
         </div>
       </el-col>
-    </el-row>
-    <el-row :gutter="10" style="margin-top: 10px;">
-      <el-col :span="8">
+      <el-col :span="6">
         <div class="card-panel" @click="handleMessage">
           <div class="card-panel-icon-wrapper icon-expertdb">
             <svg-icon icon-class="expertdb" class-name="card-panel-icon" />
@@ -81,11 +79,22 @@
         </div>
       </el-col>
     </el-row>
+    <el-row :gutter="10">
+      <el-col :span="12">
+        <img src="/TDS/static/1.jpg" alt="" style="width: 100%;">
+      </el-col>
+      <el-col :span="12">
+        <img src="/TDS/static/1.jpg" alt="" style="width: 100%;">
+      </el-col>
+    </el-row>
+    <app-footer/>
   </div>
 </template>
 
 <script>
+import appFooter from '../components/footer'
 export default {
+  components: { appFooter },
   data() {
     return {
       items: ['/TDS/static/1.jpg', '/TDS/static/2.jpg']
@@ -102,26 +111,21 @@ export default {
       this.$router.push({ name: 'appQuestion' })
     }
   }
-
 }
 </script>
 
 <style lang="scss" scoped>
   .app-container {
-      background: #f0f2f5;
+      // background: #f0f2f5;
       height: 100%;
   }
-  .el-row {
-      margin-bottom: 10px;
-      &:last-child {
-        margin-bottom: 0;
-      }
-  }
   .grid-content {
-        min-height: 100px;
-        background:#fff;
-    }
-
+    min-height: 100px;
+    background:#fff;
+  }
+  .el-row {
+    background-color: #fff;
+  }
   .card-panel {
     height: 108px;
     cursor: pointer;

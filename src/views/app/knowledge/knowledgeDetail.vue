@@ -22,13 +22,15 @@
         </div>
       </el-form-item>
     </el-form>
+    <app-footer/>
   </div>
 </template>
 
 <script>
 import { getKnowledge } from '@/api/table'
-
+import appFooter from '../components/footer'
 export default {
+  components: { appFooter },
   data() {
     return {
       id: '',
@@ -62,6 +64,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  .app-container {
+    margin-bottom: 60px;
+  }
   /deep/ .select-disabled .el-input__inner {
     background-color: transparent;
     color: #000;

@@ -18,6 +18,7 @@
         <el-button size="small" @click="replyDialogVisible = false">取 消</el-button>
       </div>
     </el-dialog>
+    <app-footer/>
   </div>
 </template>
 
@@ -26,8 +27,9 @@ import questionCard from '../component/questionCard'
 import answerCard from '../component/answerCard'
 import { getQuestion, getAnswers, saveAnswer } from '@/api/table'
 import { mapGetters } from 'vuex'
+import appFooter from '../../components/footer'
 export default {
-  components: { questionCard, answerCard },
+  components: { questionCard, answerCard, appFooter },
   data() {
     return {
       id: '', // 问题id

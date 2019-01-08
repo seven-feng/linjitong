@@ -182,6 +182,11 @@ export const constantRouterMap = [
 
   // app端
   {
+    path: '/app/home',
+    name: 'appHome',
+    component: () => import('@/views/app/home')
+  },
+  {
     path: '/app/login',
     name: 'appLogin',
     component: () => import('@/views/app/login')
@@ -191,11 +196,7 @@ export const constantRouterMap = [
     name: 'appRegister',
     component: () => import('@/views/app/register')
   },
-  {
-    path: '/app/Home',
-    name: 'appHome',
-    component: () => import('@/views/app')
-  },
+
   // 消息列表
   {
     path: '/app/messageList',
@@ -281,3 +282,21 @@ export default new Router({
   scrollBehavior: () => ({ y: 0 }),
   routes: constantRouterMap
 })
+
+export const asyncRouterMap = [
+  // 用户管理
+  {
+    path: '/user',
+    component: Layout,
+    name: 'user',
+    meta: { title: '用户管理', icon: 'expertdb' },
+    children: [
+      {
+        path: 'authority',
+        name: 'authority',
+        component: () => import('@/views/authority'),
+        meta: { title: '权限管理', icon: 'expertdb' }
+      }
+    ]
+  }
+]

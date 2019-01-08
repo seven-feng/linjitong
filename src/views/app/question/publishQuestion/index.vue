@@ -31,13 +31,15 @@
         <el-button @click="resetForm('form')">重置</el-button>
       </el-row>
     </el-form>
+    <app-footer/>
   </div>
 </template>
 
 <script>
 import { postQuestion } from '@/api/table'
-
+import appFooter from '../../components/footer'
 export default {
+  components: { appFooter },
   data() {
     return {
       form: {

@@ -7,11 +7,14 @@
       </el-radio-group>
     </div>
     <router-view/>
+    <app-footer/>
   </div>
 </template>
 
 <script>
+import appFooter from '../components/footer'
 export default {
+  components: { appFooter },
   data() {
     return {
       radio: '问题总览'
@@ -28,3 +31,10 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+  .app-container {
+    margin-bottom: 60px;
+  }
+</style>
+
