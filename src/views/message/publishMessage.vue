@@ -155,7 +155,7 @@ export default {
           postMessage(formData)
             .then(() => {
               this.$message({ message: '提交成功！', type: 'success', center: true })
-              this.$router.go(-1)
+              this.$router.push({ name: 'messageList' })
             })
             .catch(() => {
               this.$message({ message: '提交失败！', type: 'error', center: true })

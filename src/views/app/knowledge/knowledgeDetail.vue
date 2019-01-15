@@ -22,15 +22,12 @@
         </div>
       </el-form-item>
     </el-form>
-    <app-footer/>
   </div>
 </template>
 
 <script>
 import { getKnowledge } from '@/api/table'
-import appFooter from '../components/footer'
 export default {
-  components: { appFooter },
   data() {
     return {
       id: '',

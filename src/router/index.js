@@ -178,91 +178,8 @@ export const constantRouterMap = [
         meta: { title: '专家库', icon: 'expertdb' }
       }
     ]
-  },
+  }
 
-  // app端
-  {
-    path: '/app/home',
-    name: 'appHome',
-    component: () => import('@/views/app/home')
-  },
-  {
-    path: '/app/login',
-    name: 'appLogin',
-    component: () => import('@/views/app/login')
-  },
-  {
-    path: '/app/register',
-    name: 'appRegister',
-    component: () => import('@/views/app/register')
-  },
-
-  // 消息列表
-  {
-    path: '/app/messageList',
-    name: 'appMessageList',
-    component: () => import('@/views/app/message/messageList'),
-    hidden: true
-  },
-  {
-    path: '/app/messageDetail',
-    name: 'appMessageDetail',
-    component: () => import('@/views/app/message/messageDetail'),
-    hidden: true
-  },
-  {
-    path: '/app/knowledgeList',
-    name: 'appKnowledgeList',
-    component: () => import('@/views/app/knowledge/knowledgeList'),
-    hidden: true
-  },
-  {
-    path: '/app/knowledgeDetail',
-    name: 'appKnowledgeDetail',
-    component: () => import('@/views/app/knowledge/knowledgeDetail'),
-    hidden: true
-  },
-  {
-    path: '/app/question',
-    name: 'appQuestion',
-    component: () => import('@/views/app/question'),
-    redirect: '/app/question/allQuestion',
-    hidden: true,
-    children: [
-      {
-        path: 'questionList',
-        component: () => import('@/views/app/question/questionList')
-      },
-      {
-        path: 'myQuestion',
-        name: 'myQuestion',
-        component: () => import('@/views/app/question/myQuestion')
-      },
-      {
-        path: 'allQuestion',
-        name: 'allQuestion',
-        component: () => import('@/views/app/question/allQuestion')
-      }
-    ]
-  },
-  {
-    path: '/app/questionList',
-    name: 'appQuestionList',
-    component: () => import('@/views/question/questionList'),
-    hidden: true
-  },
-  {
-    path: '/app/questionDetail',
-    name: 'appQuestionDetail',
-    component: () => import('@/views/app/question/questionDetail'),
-    hidden: true
-  },
-  {
-    path: '/app/publishQuestion',
-    name: 'appPublishQuestion',
-    component: () => import('@/views/app/question/publishQuestion'),
-    hidden: true
-  },
   // {
   //   path: 'external-link',
   //   component: Layout,
@@ -274,7 +191,7 @@ export const constantRouterMap = [
   //   ]
   // },
 
-  { path: '*', redirect: '/404', hidden: true }
+  // { path: '*', redirect: '/404', hidden: true }
 ]
 
 export default new Router({
@@ -289,14 +206,15 @@ export const asyncRouterMap = [
     path: '/user',
     component: Layout,
     name: 'user',
-    meta: { title: '用户管理', icon: 'expertdb' },
+    meta: { title: '用户管理', icon: 'expertdb', roles: ['admin'] },
     children: [
       {
         path: 'authority',
         name: 'authority',
         component: () => import('@/views/authority'),
-        meta: { title: '权限管理', icon: 'expertdb' }
+        meta: { title: '权限管理', icon: 'expertdb', roles: ['admin'] }
       }
     ]
-  }
+  },
+  { path: '*', redirect: '/404', hidden: true }
 ]

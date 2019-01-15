@@ -6,9 +6,14 @@
       <span>{{ question.subType }}</span>
     </div>
     <div class="card-title">{{ question.title }}</div>
-    <div v-for="(img, index) in question.imageUrls" :key="index" class="illustration">
+    <!-- <div v-for="(img, index) in question.imageUrls" :key="index" class="illustration">
       <img :src="'/TDS' + img">
-    </div>
+    </div> -->
+    <el-carousel height="200px">
+      <el-carousel-item v-for="(item,index) in question.imageUrls" :key="index">
+        <img :src="'/TDS' + item" alt="">
+      </el-carousel-item>
+    </el-carousel>
     <div class="card-text">{{ question.content }}</div>
   </el-card>
 </template>

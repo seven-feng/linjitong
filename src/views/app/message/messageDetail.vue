@@ -17,15 +17,12 @@
         </a>
       </div>
     </div>
-    <app-footer/>
   </div>
 </template>
 
 <script>
 import { getMessage } from '@/api/table'
-import appFooter from '../components/footer'
 export default {
-  components: { appFooter },
   data() {
     return {
       id: '', // 消息id

@@ -2,7 +2,7 @@
   <div class="footer-container">
     <section class="footer-item" @click="$router.push({ name: 'appHome'})">
       <svg-icon :icon-class="$route.path.indexOf('home') === -1 ? 'home-inactive': 'home-active'" class="icon"/>
-      <span>首页</span>
+      <span :class="$route.path.indexOf('home') === -1 ? 'inactive': 'active'">首页</span>
     </section>
     <section class="footer-item" @click="$router.push({ name: 'appHome'})">
       <svg-icon :icon-class="$route.path.indexOf('lala') === -1 ? 'message-inactive' : 'message-active'" class="icon"/>
@@ -37,11 +37,16 @@
     .icon {
       width: 30px;
       height: 30px;
-      fill: #ccc;
+      fill: #c0c0c0;
     }
     span {
       font-size: 14px;
-      color: #666;
+      &.active {
+        color: #67C23A;
+      }
+      &.inactive {
+        color: #606060;
+      }
     }
   }
 </style>

@@ -140,3 +140,24 @@ export function postQuestion(formData) {
   return axios.post('/TDS/question', formData, { headers: { 'X-Token': getToken() }})
 }
 
+// 获取用户列表
+export function getUserList(params) {
+  return request({
+    url: '/user/userlist',
+    method: 'get',
+    params
+  })
+}
+
+// 修改用户权限
+export function postUserAuthority(id, roles) {
+  return request({
+    url: '/user/authority',
+    method: 'post',
+    params: {
+      id,
+      roles
+    }
+  })
+}
+

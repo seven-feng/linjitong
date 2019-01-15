@@ -29,7 +29,7 @@
         </el-button>
       </el-form-item>
       <el-form-item>
-        <el-button :loading="loading" type="primary" style="width:100%;" @click.native.prevent="handleRegister">
+        <el-button type="primary" style="width:100%;" @click.native.prevent="handleRegister">
           注册
         </el-button>
       </el-form-item>

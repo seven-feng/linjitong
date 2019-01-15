@@ -107,7 +107,7 @@ export default {
           postKnowledge(formData)
             .then(() => {
               this.$message({ message: '提交成功！', type: 'success', center: true })
-              this.$router.go(-1)
+              this.$router.push({ name: 'knowledgeList' })
             })
             .catch(() => {
               this.$message({ message: '提交失败！', type: 'error', center: true })

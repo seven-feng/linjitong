@@ -1,7 +1,7 @@
 <template>
   <div class="app-container">
     <questionCard v-if="question" :question="question"/>
-    <answer-card v-for="(answer, index) in answers" v-if="answer" :key="index" :answer="answer"/>
+    <answer-card v-for="(answer, index) in answers" :key="index" :answer="answer"/>
     <div class="btn-container">
       <el-button type="primary" size="small" @click="handleReply">回复</el-button>
       <el-button size="small" @click="handleBack">返回</el-button>
