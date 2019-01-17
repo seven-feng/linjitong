@@ -17,7 +17,7 @@
       <el-table-column label="类别" prop="subType" width="120"/>
       <el-table-column label="文档类型" prop="docType" width="80"/>
       <el-table-column label="大小" prop="size" width="100"/>
-      <el-table-column label="发布时间" width="120">
+      <el-table-column label="发布时间" width="160">
         <template slot-scope="scope">
           <span>{{ scope.row.pubdate }}</span>
         </template>
