@@ -127,13 +127,28 @@ export const constantRouterMap = [
   {
     path: '/model',
     component: Layout,
+    redirect: '/model/modelList',
     name: 'model',
+    meta: { title: '典型示范', icon: 'model' },
     children: [
       {
-        path: 'questionList',
-        name: 'questionList',
-        component: () => import('@/views/question/questionList'),
-        meta: { title: '典型示范', icon: 'model' }
+        path: 'modelList',
+        name: 'modelList',
+        component: () => import('@/views/model/modelList'),
+        meta: { title: '典型示范列表', icon: 'list' }
+      },
+      {
+        path: 'publishModel',
+        name: 'publishModel',
+        component: () => import('@/views/model/publishModel'),
+        meta: { title: '典型示范发布', icon: 'publish' }
+      },
+      {
+        path: 'modelDetail/:id',
+        name: 'modelDetail',
+        hidden: true,
+        component: () => import('@/views/model/modelDetail'),
+        meta: { title: '详情' }
       }
     ]
   },

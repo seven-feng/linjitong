@@ -140,6 +140,42 @@ export function postQuestion(formData) {
   return axios.post('/TDS/question', formData, { headers: { 'X-Token': getToken() }})
 }
 
+// 获取典型示范列表
+export function getModelList(params) {
+  return request({
+    url: '/modellist',
+    method: 'get',
+    params
+  })
+}
+
+// 获取典型示范
+export function getModel(id) {
+  return request({
+    url: '/model',
+    method: 'get',
+    params: {
+      id
+    }
+  })
+}
+
+// 删除典型示范
+export function delModelList(id) {
+  return request({
+    url: '/model',
+    method: 'delete',
+    params: {
+      id
+    }
+  })
+}
+
+// 发布典型示范
+export function postModel(formData) {
+  return axios.post('/TDS/model', formData, { headers: { 'X-Token': getToken() }})
+}
+
 // 获取用户列表
 export function getUserList(params) {
   return request({

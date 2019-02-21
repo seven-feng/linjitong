@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import { getMessage } from '@/api/table'
+import { getModel } from '@/api/table'
 
 export default {
   data() {
@@ -39,14 +39,14 @@ export default {
     this.id = this.$route.params.id
   },
   mounted() {
-    getMessage(this.id).then(res => {
+    getModel(this.id).then(res => {
       if (res.data != null) {
         this.title = res.data.title
         this.editor = res.data.editor
         this.pubdate = res.data.pubdate
         this.imageUrls = res.data.imageUrls
         this.content = res.data.content
-        // this.content = this.content.split('img').join('img style="max-width: 100%;"')
+        // this.content = this.content.split('img').join('img style="display:block; margin-left: auto; margin-right: auto; max-width: 100%;"')
         this.fileUrls = res.data.fileUrls
       }
     })
