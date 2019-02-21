@@ -46,6 +46,7 @@ export default {
         this.pubdate = res.data.pubdate
         this.imageUrls = res.data.imageUrls
         this.content = res.data.content
+        this.content = this.content.split('img').join('img style="max-width: 100%;"')
         this.fileUrls = res.data.fileUrls
       }
     })
