@@ -197,3 +197,39 @@ export function postUserAuthority(id, roles) {
   })
 }
 
+// 获取系统消息列表
+export function getSysMessageList(params) {
+  return request({
+    url: '/sysmessagelist',
+    method: 'get',
+    params
+  })
+}
+
+// 获取系统消息
+export function getSysMessage(id) {
+  return request({
+    url: '/sysmessage',
+    method: 'get',
+    params: {
+      id
+    }
+  })
+}
+
+// 删除系统消息
+export function delSysMessageList(id) {
+  return request({
+    url: '/sysmessage',
+    method: 'delete',
+    params: {
+      id
+    }
+  })
+}
+
+// 发布系统消息
+export function postSysMessage(formData) {
+  return axios.post('/TDS/sysmessage', formData, { headers: { 'X-Token': getToken() }})
+}
+

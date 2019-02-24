@@ -193,6 +193,35 @@ export const constantRouterMap = [
         meta: { title: '专家库', icon: 'expertdb' }
       }
     ]
+  },
+  // 系统消息
+  {
+    path: '/sysmessage',
+    component: Layout,
+    redirect: '/sysmessage/sysMessageList',
+    name: 'message',
+    meta: { title: '系统消息', icon: 'message' },
+    children: [
+      {
+        path: 'sysMessageList',
+        name: 'sysMessageList',
+        component: () => import('@/views/sysmessage/sysMessageList'),
+        meta: { title: '系统消息列表', icon: 'list' }
+      },
+      {
+        path: 'publishSysMessage',
+        name: 'publishSysMessage',
+        component: () => import('@/views/sysmessage/publishSysMessage'),
+        meta: { title: '发布系统消息', icon: 'publish' }
+      },
+      {
+        path: 'sysMessageDetail/:id',
+        name: 'sysMessageDetail',
+        hidden: true,
+        component: () => import('@/views/sysmessage/sysMessageDetail'),
+        meta: { title: '详情' }
+      }
+    ]
   }
 
   // {
