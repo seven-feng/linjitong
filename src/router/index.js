@@ -193,6 +193,31 @@ export const constantRouterMap = [
         meta: { title: '专家库', icon: 'expertdb' }
       }
     ]
+  }
+  // { path: '*', redirect: '/404', hidden: true }
+]
+
+export default new Router({
+  // mode: 'history', // 后端支持可开
+  scrollBehavior: () => ({ y: 0 }),
+  routes: constantRouterMap
+})
+
+export const asyncRouterMap = [
+  // 用户管理
+  {
+    path: '/user',
+    component: Layout,
+    name: 'user',
+    meta: { title: '用户管理', icon: 'expertdb', roles: ['admin'] },
+    children: [
+      {
+        path: 'authority',
+        name: 'authority',
+        component: () => import('@/views/authority'),
+        meta: { title: '权限管理', icon: 'expertdb', roles: ['admin'] }
+      }
+    ]
   },
   // 系统消息
   {
@@ -220,43 +245,6 @@ export const constantRouterMap = [
         hidden: true,
         component: () => import('@/views/sysmessage/sysMessageDetail'),
         meta: { title: '详情' }
-      }
-    ]
-  }
-
-  // {
-  //   path: 'external-link',
-  //   component: Layout,
-  //   children: [
-  //     {
-  //       path: 'https://panjiachen.github.io/vue-element-admin-site/#/',
-  //       meta: { title: 'External Link', icon: 'link' }
-  //     }
-  //   ]
-  // },
-
-  // { path: '*', redirect: '/404', hidden: true }
-]
-
-export default new Router({
-  // mode: 'history', // 后端支持可开
-  scrollBehavior: () => ({ y: 0 }),
-  routes: constantRouterMap
-})
-
-export const asyncRouterMap = [
-  // 用户管理
-  {
-    path: '/user',
-    component: Layout,
-    name: 'user',
-    meta: { title: '用户管理', icon: 'expertdb', roles: ['admin'] },
-    children: [
-      {
-        path: 'authority',
-        name: 'authority',
-        component: () => import('@/views/authority'),
-        meta: { title: '权限管理', icon: 'expertdb', roles: ['admin'] }
       }
     ]
   },

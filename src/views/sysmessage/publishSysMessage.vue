@@ -4,10 +4,6 @@
       <el-form-item label="标题" prop="title">
         <el-input v-model="form.title" style="min-width: 275px; max-width: 500px;"/>
       </el-form-item>
-      <el-form-item label="区域" prop="areaName">
-        <el-input ref="areaInput" v-model="form.areaName" style="min-width: 275px; max-width: 500px;" @focus="handleAreaDialog"/>
-        <el-input v-model="form.areaId" style="display: none;"/>
-      </el-form-item>
       <el-form-item label="简介" prop="intro">
         <el-input v-model="form.intro" :rows="6" type="textarea" style="min-width: 275px; max-width: 500px;"/>
       </el-form-item>
@@ -35,15 +31,12 @@
         <el-button type="primary" @click="handleSubmit('form')">发布</el-button>
         <el-button @click="resetForm('form')">重置</el-button>
       </el-form-item>
-      <el-dialog :visible.sync="areaDialogVisible" width="300px" lock-scroll top="10vh" class="area-dialog">
-        <el-tree :data="treeData" :props="defaultProps" accordion @node-click="handleTreeClick"/>
-      </el-dialog>
     </el-form>
   </div>
 </template>
 
 <script>
-import { postSysMessage, getArea } from '@/api/table'
+import { postSysMessage } from '@/api/table'
 import Tinymce from '@/components/Tinymce'
 
 export default {
@@ -52,45 +45,19 @@ export default {
     return {
       form: {
         title: '',
-        areaName: '',
-        areaId: '',
         intro: ''
       },
-      treeData: [],
       rules: { // 表单验证规则
         title: [
           { required: true, message: '请输入标题', trigger: 'blur' }
-        ],
-        areaId: [
-          { required: true, message: '请选择区域', trigger: 'change' }
         ]
       },
-      defaultProps: { // 树形控件属性
-        children: 'children',
-        label: 'label'
-      },
-      areaDialogVisible: false, // 区域选择对话框
       fileList: [], // 上传文件列表
       files: [],
       content: ''
     }
   },
-  created() {
-    getArea().then(res => {
-      this.treeData = res.data
-    })
-  },
   methods: {
-    handleAreaDialog() { // 显示区域选择框
-      this.areaDialogVisible = true
-      this.$refs['areaInput'].blur()
-    },
-    handleTreeClick(data, node) {
-      this.form.areaId = data.id
-      this.form.areaName = data.label
-      this.areaDialogVisible = false
-      this.$refs['form'].clearValidate('area') // 选择区域以后，手动清除表单验证
-    },
     beforeRemove(file, fileList) {
       return this.$confirm(`确定移除 ${file.name}？`, {
         confirmButtonText: '确定',
@@ -114,8 +81,6 @@ export default {
         if (valid) {
           const formData = new FormData()
           formData.append('title', this.form.title) // 标题
-          formData.append('areaName', this.form.areaName) // 区域名称
-          formData.append('areaId', this.form.areaId) // 区域id
           formData.append('intro', this.form.intro) // 简介
           formData.append('content', this.content) // HTML 内容
           this.files.map(item => { // 上传文件
@@ -124,7 +89,7 @@ export default {
           postSysMessage(formData)
             .then(() => {
               this.$message({ message: '提交成功！', type: 'success', center: true })
-              this.$router.push({ name: 'messageList' })
+              this.$router.push({ name: 'sysMessageList' })
             })
             .catch(() => {
               this.$message({ message: '提交失败！', type: 'error', center: true })
