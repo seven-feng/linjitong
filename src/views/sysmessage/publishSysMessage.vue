@@ -4,6 +4,9 @@
       <el-form-item label="标题" prop="title">
         <el-input v-model="form.title" style="min-width: 275px; max-width: 500px;"/>
       </el-form-item>
+      <el-form-item label="日期" prop="pubdate">
+        <el-date-picker v-model="form.pubdate" type="date" placeholder="选择日期"/>
+      </el-form-item>
       <el-form-item label="简介" prop="intro">
         <el-input v-model="form.intro" :rows="6" type="textarea" style="min-width: 275px; max-width: 500px;"/>
       </el-form-item>
@@ -38,6 +41,7 @@
 <script>
 import { postSysMessage } from '@/api/table'
 import Tinymce from '@/components/Tinymce'
+import { parseTime } from '@/utils'
 
 export default {
   components: { Tinymce },
@@ -45,7 +49,8 @@ export default {
     return {
       form: {
         title: '',
-        intro: ''
+        intro: '',
+        pubdate: ''
       },
       rules: { // 表单验证规则
         title: [
@@ -56,6 +61,9 @@ export default {
       files: [],
       content: ''
     }
+  },
+  created() {
+    this.form.pubdate = new Date()
   },
   methods: {
     beforeRemove(file, fileList) {
@@ -81,6 +89,7 @@ export default {
         if (valid) {
           const formData = new FormData()
           formData.append('title', this.form.title) // 标题
+          formData.append('pubdate', parseTime(this.form.pubdate)) // 日期
           formData.append('intro', this.form.intro) // 简介
           formData.append('content', this.content) // HTML 内容
           this.files.map(item => { // 上传文件

@@ -14,6 +14,9 @@
           <el-option v-for="(item, index) in subTypes" :key="index" :label="item" :value="item"/>
         </el-select>
       </el-form-item>
+      <el-form-item label="日期" prop="pubdate">
+        <el-date-picker v-model="form.pubdate" type="date" placeholder="选择日期"/>
+      </el-form-item>
       <el-form-item label="简介" prop="intro">
         <el-input v-model="form.intro" :rows="6" type="textarea" placeholder="输入内容不要超过255个字" style="min-width: 275px; max-width: 500px;"/>
       </el-form-item>
@@ -43,13 +46,15 @@
 
 <script>
 import { postKnowledge } from '@/api/table'
+import { parseTime } from '@/utils'
 
 export default {
   data() {
     return {
       form: {
         title: '',
-        intro: ''
+        intro: '',
+        pubdate: ''
       },
       rules: { // 表单验证规则
         title: [
@@ -70,6 +75,9 @@ export default {
       fileList: [], // 上传文件列表
       files: []
     }
+  },
+  created() {
+    this.form.pubdate = new Date()
   },
   methods: {
     handleRemove(file, fileList) {
@@ -100,6 +108,7 @@ export default {
           formData.append('title', this.form.title) // 标题
           formData.append('type', this.form.type) // 大类
           formData.append('subType', this.form.subType) // 子类
+          formData.append('pubdate', parseTime(this.form.pubdate)) // 日期
           formData.append('intro', this.form.intro) // 简介
           this.files.map(item => { // 上传文件
             formData.append('files', item)

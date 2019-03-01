@@ -4,6 +4,9 @@
       <el-form-item label="标题" prop="title">
         <el-input v-model="form.title" style="min-width: 275px; max-width: 500px;"/>
       </el-form-item>
+      <el-form-item label="日期" prop="pubdate">
+        <el-date-picker v-model="form.pubdate" type="date" placeholder="选择日期"/>
+      </el-form-item>
       <el-form-item label="区域" prop="areaName">
         <el-input ref="areaInput" v-model="form.areaName" style="min-width: 275px; max-width: 500px;" @focus="handleAreaDialog"/>
         <el-input v-model="form.areaId" style="display: none;"/>
@@ -59,6 +62,7 @@
 <script>
 import { postModel, getArea } from '@/api/table'
 import Tinymce from '@/components/Tinymce'
+import { parseTime } from '@/utils'
 
 export default {
   components: { Tinymce },
@@ -68,7 +72,8 @@ export default {
         title: '',
         areaName: '',
         areaId: '',
-        intro: ''
+        intro: '',
+        pubdate: ''
       },
       treeData: [],
       rules: { // 表单验证规则
@@ -95,6 +100,7 @@ export default {
     getArea().then(res => {
       this.treeData = res.data
     })
+    this.form.pubdate = new Date() // 默认获取系统时间
   },
   methods: {
     handleAreaDialog() { // 显示区域选择框
@@ -142,6 +148,7 @@ export default {
         if (valid) {
           const formData = new FormData()
           formData.append('title', this.form.title) // 标题
+          formData.append('pubdate', parseTime(this.form.pubdate)) // 日期
           formData.append('areaName', this.form.areaName) // 区域名称
           formData.append('areaId', this.form.areaId) // 区域id
           formData.append('intro', this.form.intro) // 简介
