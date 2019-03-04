@@ -43,7 +43,7 @@ export default {
   data() {
     return {
       types: ['林技产业'],
-      subTypes: ['竹笋', '山核桃', '香榧', '油茶', '花卉苗木', '其他木本粮油', '林下经济'],
+      subTypes: ['综合', '林下经济', '竹笋', '花卉苗木', '木本粮油'],
       total: 10,
       listQuery: {
         page: 1,
