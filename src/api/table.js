@@ -233,3 +233,39 @@ export function postSysMessage(formData) {
   return axios.post('/TDS/sysmessage', formData, { headers: { 'X-Token': getToken() }})
 }
 
+// 获取专家列表
+export function getExpertList(params) {
+  return request({
+    url: '/expertlist',
+    method: 'get',
+    params
+  })
+}
+
+// 获取专家
+export function getExpert(id) {
+  return request({
+    url: '/expert',
+    method: 'get',
+    params: {
+      id
+    }
+  })
+}
+
+// 删除专家
+export function delExpert(id) {
+  return request({
+    url: '/expert',
+    method: 'delete',
+    params: {
+      id
+    }
+  })
+}
+
+// 发布专家
+export function postExpert(formData) {
+  return axios.post('/TDS/expert', formData, { headers: { 'X-Token': getToken() }})
+}
+
