@@ -185,12 +185,26 @@ export const constantRouterMap = [
     path: '/expertdb',
     component: Layout,
     name: 'expertdb',
+    meta: { title: '专家库', icon: 'model' },
     children: [
       {
-        path: 'questionList',
-        name: 'questionList',
-        component: () => import('@/views/question/questionList'),
-        meta: { title: '专家库', icon: 'expertdb' }
+        path: 'expertList',
+        name: 'expertList',
+        component: () => import('@/views/expertdb/expertList'),
+        meta: { title: '专家列表', icon: 'list' }
+      },
+      {
+        path: 'publishExpert',
+        name: 'publishExpert',
+        component: () => import('@/views/expertdb/publishExpert'),
+        meta: { title: '专家发布', icon: 'publish' }
+      },
+      {
+        path: 'expertDetail/:id',
+        name: 'expertDetail',
+        hidden: true,
+        component: () => import('@/views/expertdb/expertDetail'),
+        meta: { title: '详情' }
       }
     ]
   }
