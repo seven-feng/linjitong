@@ -8,7 +8,7 @@
         <el-input v-model="form.age" placeholder="请输入年龄" style="max-width: 275px;"/>
       </el-form-item>
       <el-form-item label="电话" prop="phone">
-        <el-input v-model="form.age" placeholder="请输入电话" style="max-width: 275px;"/>
+        <el-input v-model="form.phone" placeholder="请输入电话" style="max-width: 275px;"/>
       </el-form-item>
       <el-form-item label="类别" prop="type">
         <el-select v-model="form.type" placeholder="请选择类别" clearable class="filter-item" style="min-width: 275px;">
