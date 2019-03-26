@@ -10,10 +10,10 @@
 
     <el-table :data="tableData" style="width: 100%">
       <el-table-column label="序号" type="index" width="80"/>
-      <el-table-column label="姓名" prop="name" width="120"/>
+      <el-table-column label="姓名" prop="name" width="150"/>
       <el-table-column label="年龄" prop="age" width="120"/>
-      <el-table-column label="电话" prop="phone" width="150"/>
-      <el-table-column label="类别" prop="type" width="120"/>
+      <el-table-column label="电话" prop="phone" width="200"/>
+      <el-table-column label="类别" prop="type" width="200"/>
       <el-table-column label="单位" prop="department"/>
       <el-table-column label="操作" width="150">
         <template slot-scope="scope">
@@ -35,7 +35,7 @@ import { getExpertList, delExpert } from '@/api/table'
 export default {
   data() {
     return {
-      types: ['林技产业'],
+      types: ['综合', '林下经济', '竹笋', '花卉苗木', '木本粮油'],
       total: 10,
       listQuery: {
         page: 1,
@@ -65,7 +65,7 @@ export default {
       this.getlist()
     },
     handleEdit(index, row) { // 编辑按钮
-      this.$router.push({ name: 'expertDetail', params: { id: row.id }}) // 跳转消息详情页
+      this.$router.push({ name: 'expertDetail', params: { id: row.id }}) // 跳转详情页
     },
     handleDelete(index, row) { // 删除按钮
       delExpert(row.id).then(resopnse => {

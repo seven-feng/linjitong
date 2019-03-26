@@ -40,7 +40,7 @@ export default {
         department: '',
         intro: ''
       },
-      types: ['林技产业']
+      types: ['综合', '林下经济', '竹笋', '花卉苗木', '木本粮油']
     }
   },
   created() {
